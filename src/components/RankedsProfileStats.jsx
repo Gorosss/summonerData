@@ -1,6 +1,8 @@
 import { getSummonerStats, TierIconUrl } from '../api/apiCalls.jsx'
 import { useState, useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.css';
+import '../css/RankedsProfileStats.css';
+
 
 import {ProgressBarWinRate} from '../components/ProgressBar.jsx';
 

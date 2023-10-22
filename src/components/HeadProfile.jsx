@@ -4,15 +4,20 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 
 
-export function HeadProfile({ profileIconId, summonerName }) {
+export function HeadProfile({ summonerInfo }) {
+  console.log(summonerInfo)
     return (
-      <div className="row headProfile">
+      <div>
         <div className='profileIcon'>
-          <ProfileIconUrl profileIconId={profileIconId} />
+          <ProfileIconUrl profileIconId={summonerInfo.profileIconId} />
+          <div className='summonerLevel'>
+            {summonerInfo.summonerLevel}
+
+          </div>
         </div>
         <div className='profileInfo'>
           <div className='summonerName'>
-            {summonerName}
+            {summonerInfo.name}
           </div>
         </div>
   
@@ -22,3 +27,4 @@ export function HeadProfile({ profileIconId, summonerName }) {
   }
 
   export default HeadProfile
+  

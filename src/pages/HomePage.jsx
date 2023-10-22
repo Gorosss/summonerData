@@ -21,16 +21,12 @@ export function HomePage() {
 
         
 
-         // Access the form data from the state
         const { summonerName, region } = formData;
 
-        // Now, you can use summonerName and region as needed, for example, you can make an API request with these values.
-        // Call your searchSummoner function with summonerName and region.
 
         console.log(summonerName, region);
 
     
-        // Construct the URL with the reg and summonerName
         const url = `/profile/${region}/${summonerName}`;
 
         console.log(url)

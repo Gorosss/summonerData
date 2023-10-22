@@ -6,7 +6,11 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 import { ChampIconUrl, ItemsIconsUrl, SummonerSpellIconUrl, RuneIconUrl } from '../api/apiCalls.jsx'
 
-import {ProgressBarDMG} from '../components/ProgressBar.jsx';
+import { ProgressBarDMG } from '../components/ProgressBar.jsx';
+import { SummonersList } from '../components/SummonersList.jsx';
+
+import { CalculateElapsedTime } from '../components/CalculateElapsedTime.jsx';
+
 
 
 
@@ -29,10 +33,14 @@ export function GameInfo({ summonerInfo, matchInfo }) {
     const maxDMG = Math.max(...match.participants.map(p => p.totalDamageDealtToChampions));
 
     return (
-        
-            <>
-            
-                <div>{match.gameMode} {Math.round(match.gameDuration / 60)} minutes</div>
+
+        <>
+            <div className='game'>
+                <div className='gameData'>
+                    {match.gameMode} {Math.round(match.gameDuration / 60)} minutes P{match.gameVersion.substring(0, 5)}
+                    <CalculateElapsedTime gameEndTimestamp={match.gameEndTimestamp}/>
+                </div>
+
                 <div className='match'>
                     <div className='matchInfo'>
                         <div className='col summoner'>
@@ -78,8 +86,8 @@ export function GameInfo({ summonerInfo, matchInfo }) {
 
                         </div>
 
-                        <div className='col matchList'>
-                            Nan
+                        <div className='col summonersList'>
+                            <SummonersList matchParticipants={match.participants}/>
                         </div>
 
 
@@ -143,7 +151,11 @@ export function GameInfo({ summonerInfo, matchInfo }) {
                     </div>)
                 }
 
-            </>
+               
+            </div>
+            
+            
+        </>
     )
 
 }

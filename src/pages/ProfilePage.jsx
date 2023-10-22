@@ -18,6 +18,7 @@ import { RankedsProfileStats } from '../components/RankedsProfileStats.jsx'
 import MatchTest from '../jsons/matchTest.json'
 import MatchTest2 from '../jsons/matchTest2.json'
 import MatchTest3 from '../jsons/matchTestTocho.json'
+import MatchTest4 from '../jsons/matchTestTocho2.json'
 
 
 
@@ -36,7 +37,7 @@ export function StatsProfile() {
 export function ProfilePage() {
   const { reg, summonerName } = useParams();
   const [summonerInfo, setSummoner] = useState(); // Initialize the state with null or an initial value
-  const [matches, setMatches] = useState(MatchTest3); // Initialize the state with null or an initial value
+  const [matches, setMatches] = useState(MatchTest4); // Initialize the state with null or an initial value
 
   const getSummonerInfo = async () => {
     try {
@@ -66,8 +67,12 @@ export function ProfilePage() {
         (summonerInfo === undefined) ? <h1>Cagando</h1> :
 
           <>
-
-            <HeadProfile profileIconId={summonerInfo.profileIconId} summonerName={summonerInfo.name} />
+            <div className="row headProfile">
+            <HeadProfile summonerInfo={summonerInfo}/>
+            </div>
+            <div className="row summonerNavbar">
+              Summary         MasteryPoints
+            </div>
             <div className="row bodyProfile">
               <div className='col-3 summonerStats'>
                 <RankedsProfileStats reg={reg} summonerId={summonerInfo.id}/>
@@ -82,9 +87,13 @@ export function ProfilePage() {
 
 
                 }
-             
+              <div>
+                    <button>Show More</button>
+                </div>
               </div>
+              
             </div>
+            
 
 
 

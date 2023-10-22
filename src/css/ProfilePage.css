@@ -1,0 +1,7 @@
+.bodyProfile{
+    width: 100%;
+}
+
+.summonerStats, .summonerHistory {
+    border-style: solid;
+}

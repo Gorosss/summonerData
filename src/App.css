@@ -1,0 +1,11 @@
+#root {
+  min-width: 1200px;
+  width: 80%;
+  text-align: center;
+  align-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+

@@ -1,16 +1,32 @@
 .match {
     display: flex;
     margin-top: 5px;
+    border-radius: 4px;
+
 }
 
 .game {
-    border: 1px;
-    border-radius: 1px;
-    border-color: black;
-    border-style: solid;
-    margin-top: 15px;
+
+    margin-top: 10px;
 
 }
+
+.game.win .match{
+    background-color: #202b5f;
+}
+
+.game.win .match:hover{
+    background-color: #1d224b;
+}
+
+.game.loss .match{
+    background-color: #3b233b;
+}
+
+.game.loss .match:hover{
+    background-color: #311f3a;
+}
+
 
 .matchInfo {
     display: grid;
@@ -30,6 +46,8 @@
 
 .showMatch button {
     height: 100%;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
 }
 
 .summoner {

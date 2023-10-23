@@ -1,42 +1,8 @@
 .bodyProfile{
-    width: 100%;
+    width: 95%;
+    max-width: 1100px;
+    
 }
 
-.summonerStats, .summonerHistory {
-    border-style: solid;
-}
 
 
-.profileIcon {
-    position: relative;
-    width: 80px;
-    height: 80px;
-    padding: 0;
-}
-
-.profileIcon img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%; 
-    border-style: solid;
-    border-width: 1px;
-
-}
-
-.summonerLevel {
-    position: absolute;
-    width: 23px;
-    height: 23px;
-    align-items: center; 
-    justify-content: center;
-    font-size: 12px;
-    top: 0;
-    right: 0;
-    border-radius: 50%; 
-    border-style: solid;
-    border-width: 1px;
-    text-align: center; 
-    background-color: white;
-    color: black;
-}

@@ -16,12 +16,24 @@ import { CalculateElapsedTime } from '../components/CalculateElapsedTime.jsx';
 
 export function GameInfo({ summonerInfo, matchInfo }) {
 
+    
+
 
     const [showGameInfo, setShowGameInfo] = useState(false);
 
     const toggleGameInfo = () => {
         setShowGameInfo(!showGameInfo);
     };
+
+    const queueIdMap = {
+        400: "Normal",
+        420: "Ranked Solo",
+        440: "Ranked Flex",
+        450: "ARAM",
+        460: "Ranked Flex (3v3)",
+        900: "URF",
+        950: "ARURF",
+      };
 
     const match = matchInfo.info
 
@@ -35,14 +47,40 @@ export function GameInfo({ summonerInfo, matchInfo }) {
     return (
 
         <>
-            <div className='game'>
-                <div className='gameData'>
-                    {match.gameMode} {Math.round(match.gameDuration / 60)} minutes P{match.gameVersion.substring(0, 5)}
-                    <CalculateElapsedTime gameEndTimestamp={match.gameEndTimestamp}/>
-                </div>
+            <div className={ summonerMatch.win ? 'game win' : 'game loss'} >
+
 
                 <div className='match'>
                     <div className='matchInfo'>
+                        <div className='col gameData'>
+                            <div>
+                                {queueIdMap[match.queueId]}
+                            </div>
+                            <div>
+                            <CalculateElapsedTime gameEndTimestamp={match.gameEndTimestamp} />
+
+                            </div>
+                            <div>
+                                {
+                                    summonerMatch.win ? (
+                                        <>
+                                        WIN
+                                        {Math.round(match.gameDuration / 60)}
+
+                                        </>
+                                    ):(
+                                        <>
+                                        LOSS
+                                        {Math.round(match.gameDuration / 60)}
+
+                                        </>
+
+                                    )
+                                }
+                            
+                            </div>
+                             
+                        </div>
                         <div className='col summoner'>
                             <div className='summonerChamp'>
                                 <ChampIconUrl champIconName={summonerMatch.championName} />
@@ -69,9 +107,9 @@ export function GameInfo({ summonerInfo, matchInfo }) {
                             <div>
                                 {((summonerMatch.kills + summonerMatch.assists) / summonerMatch.deaths).toFixed(1)} KDA
                             </div>
-                        </div>
-                        <div className='col cs'>
-                            {summonerMatch.totalMinionsKilled + summonerMatch.neutralMinionsKilled} ({((summonerMatch.totalMinionsKilled + summonerMatch.neutralMinionsKilled) / (match.gameDuration / 60)).toFixed(1)}) CS
+                            <div >
+                                {summonerMatch.totalMinionsKilled + summonerMatch.neutralMinionsKilled} ({((summonerMatch.totalMinionsKilled + summonerMatch.neutralMinionsKilled) / (match.gameDuration / 60)).toFixed(1)}) CS
+                            </div>
                         </div>
                         <div className='col killParticipation'>
                             XXX % KP
@@ -87,7 +125,7 @@ export function GameInfo({ summonerInfo, matchInfo }) {
                         </div>
 
                         <div className='col summonersList'>
-                            <SummonersList matchParticipants={match.participants}/>
+                            <SummonersList matchParticipants={match.participants} />
                         </div>
 
 
@@ -151,10 +189,10 @@ export function GameInfo({ summonerInfo, matchInfo }) {
                     </div>)
                 }
 
-               
+
             </div>
-            
-            
+
+
         </>
     )
 

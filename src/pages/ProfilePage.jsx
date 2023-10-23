@@ -9,8 +9,11 @@ import { useState, useEffect } from 'react'
 import { summonerNameApi, getLastMatches } from '../api/apiCalls.jsx'
 
 
+import { Header } from '../components/Header.jsx'
 import { GameInfo } from '../components/GameInfo.jsx'
 import { HeadProfile } from '../components/HeadProfile.jsx'
+import { SummonerNavbar } from '../components/SummonerNavbar.jsx'
+
 import { RankedsProfileStats } from '../components/RankedsProfileStats.jsx'
 
 
@@ -44,7 +47,7 @@ export function ProfilePage() {
       const sumApiInfo = await summonerNameApi({ reg, summonerName }); // Make sure to call your API function
       setSummoner(sumApiInfo);
       const summonerPuuid = summonerInfo.puuid
-      const lastMatches = await getLastMatches({summonerPuuid})
+      const lastMatches = await getLastMatches({ summonerPuuid })
       setMatches(lastMatches)
     } catch (e) {
       // Handle errors here
@@ -59,41 +62,41 @@ export function ProfilePage() {
   }, []);
 
   console.log(summonerInfo)
- 
+
   return (
     <>
+      <Header />
+      
       {
-        
+
         (summonerInfo === undefined) ? <h1>Cagando</h1> :
 
           <>
             <div className="row headProfile">
-            <HeadProfile summonerInfo={summonerInfo}/>
+              <HeadProfile summonerInfo={summonerInfo} />
             </div>
-            <div className="row summonerNavbar">
-              Summary         MasteryPoints
-            </div>
+            <SummonerNavbar />
             <div className="row bodyProfile">
               <div className='col-3 summonerStats'>
-                <RankedsProfileStats reg={reg} summonerId={summonerInfo.id}/>
+                <RankedsProfileStats reg={reg} summonerId={summonerInfo.id} />
               </div>
               <div className='col-9 summonerHistory'>
                 {
                   matches.map(match => {
                     return (
-                    <GameInfo summonerInfo={summonerInfo} matchInfo={match} key={match.metadata.matchId}/>
-                  )
+                      <GameInfo summonerInfo={summonerInfo} matchInfo={match} key={match.metadata.matchId} />
+                    )
                   })
 
 
                 }
-              <div>
-                    <button>Show More</button>
+                <div>
+                  <button>Show More</button>
                 </div>
               </div>
-              
+
             </div>
-            
+
 
 
 

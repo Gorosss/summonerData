@@ -1,0 +1,49 @@
+.summonerNavbar {
+    width: 100%;
+    background-color: #2c274f;
+    padding: 8px 0;
+    border-top: 1px solid;
+    border-color: #151136;
+    
+    
+
+}
+
+.summonerNavbar .wrapper {
+    position: relative;
+    z-index: 3!important;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 1080px;
+    margin: 0 auto;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+}
+
+.summonerInfoOptions {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    gap: 8px;
+    margin: 0;
+}
+
+.summonerInfoOptions li div {
+    background-color: #565895;
+    color: #FFF;
+    display: block;
+    min-width: 60px;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+    text-align: center;
+}
+

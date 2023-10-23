@@ -5,9 +5,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 
 export function HeadProfile({ summonerInfo }) {
-  console.log(summonerInfo)
-    return (
-      <div>
+  return (
+    <div className='wrapper'>
         <div className='profileIcon'>
           <ProfileIconUrl profileIconId={summonerInfo.profileIconId} />
           <div className='summonerLevel'>
@@ -20,11 +19,9 @@ export function HeadProfile({ summonerInfo }) {
             {summonerInfo.name}
           </div>
         </div>
-  
-      </div>
-  
-    )
-  }
+    </div>
 
-  export default HeadProfile
-  
+  )
+}
+
+export default HeadProfile

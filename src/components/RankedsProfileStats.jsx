@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import '../css/RankedsProfileStats.css';
 
 
-import {ProgressBarWinRate} from '../components/ProgressBar.jsx';
+import { ProgressBarWinRate } from '../components/ProgressBar.jsx';
 
 
 
@@ -12,13 +12,20 @@ import {ProgressBarWinRate} from '../components/ProgressBar.jsx';
 export function RankedsProfileStats({ reg, summonerId }) {
     const [summonerSolo, setSummonerSolo] = useState(); // Initialize the state with null or an initial value
     const [summonerFlex, setSummonerFlex] = useState(); // Initialize the state with null or an initial value
+    const [winratePercentColorSolo, setWinratePercentColorSolo] = useState('#ffffff'); // Initialize the state with null or an initial value
+    const [winratePercentColorFlex, setWinratePercentColorFlex] = useState('#ffffff'); // Initialize the state with null or an initial value
+    const [winratePercentSolo, setWinratePercentSolo] = useState(); // Initialize the state with null or an initial value
+    const [winratePercentFlex, setWinratePercentFlex] = useState(); // Initialize the state with null or an initial value
 
     const getSummonerStatsFun = async () => {
         try {
             const summonerStats = await getSummonerStats({ reg, summonerId });
-            console.log(summonerStats)
             setSummonerSolo(summonerStats.find(queue => (queue.queueType === "RANKED_SOLO_5x5")));
             setSummonerFlex(summonerStats.find(queue => (queue.queueType === "RANKED_FLEX_SR")));
+            setWinratePercentSolo(((summonerSolo.wins / (summonerSolo.wins + summonerSolo.losses)) * 100).toFixed(1))
+            setWinRateColorSolo()
+            setWinratePercentFlex(((summonerFlex.wins / (summonerFlex.wins + summonerFlex.losses)) * 100).toFixed(1))
+            setWinRateColorFlex()
         } catch (e) {
             // Handle errors here
         } finally {
@@ -41,31 +48,57 @@ export function RankedsProfileStats({ reg, summonerId }) {
         II: 2,
         III: 3,
         IV: 4
-    };
+    }
+    const setWinRateColorSolo = () => {
+        if (winratePercentSolo < 40) {
+            setWinratePercentColorSolo('#ff4655')
+        }
 
-    console.log(summonerFlex)
+        if (winratePercentSolo > 60) {
+            setWinratePercentColorSolo('#3273fa')
+        }
+
+    }
+    const setWinRateColorFlex = () => {
+        if (winratePercentFlex < 40) {
+            setWinratePercentColorFlex('#ff4655')
+        }
+
+        if (winratePercentFlex > 60) {
+            setWinratePercentColorFlex('#3273fa')
+        }
+
+    }
+
+    console.log(winratePercentSolo,winratePercentColorSolo)
 
     return (
         <>
             {
                 summonerSolo === undefined ? <></> : (
-                    <div className='row soloQueue'>
-                        <div className='col'>
+                    <div className='soloQueue'>
+                        <div className='tierIcon'>
                             <TierIconUrl tier={summonerSolo.tier} />
                         </div>
-                        <div className='col'>
-                            <div className='row'>
-                                {capitalizeFirstLetter(summonerSolo.tier)} 
-                                {romanToArabicMap[summonerSolo.rank]}
-                                LP {summonerSolo.leaguePoints}
+                        <div className='rankSummary'>
+                            <div className='rankType'>Ranked Solo</div>
+                            <div className='rankInfo'>
+                                <span className='rank'>{capitalizeFirstLetter(summonerSolo.tier)} {romanToArabicMap[summonerSolo.rank]}</span>
+                                <span className='dot'>·</span>
+                                <span className='lpPoints'>{summonerSolo.leaguePoints} LP</span> 
                             </div>
-                            <div className='row'>
-                                {summonerSolo.wins}W 
-                                {summonerSolo.losses}L 
-                                {((summonerSolo.wins/(summonerSolo.wins+summonerSolo.losses))*100).toFixed(1)}%
+                            <div className='rankWinrate'>
+                                <span className='gamesWinLoss'>{summonerSolo.wins}</span>
+                                <span>W</span>
+                                <span className='gamesWinLoss'>{summonerSolo.losses}</span>
+                                <span>L</span>
+                                <span className='dot'>·</span>
+                                <span className='winratePercent'  style={{color : winratePercentColorSolo}}>{winratePercentSolo}%</span>
+                                
+                                
                             </div>
-                            <div className='row'>
-                                <ProgressBarWinRate win={((summonerSolo.wins/(summonerSolo.wins+summonerSolo.losses))*100).toFixed(1)} losse={100-((summonerSolo.wins/(summonerSolo.wins+summonerSolo.losses))*100).toFixed(1)}/>
+                            <div className='progressWinRate'>
+                                <ProgressBarWinRate win={winratePercentSolo} />
                             </div>
                         </div>
                     </div>
@@ -76,23 +109,29 @@ export function RankedsProfileStats({ reg, summonerId }) {
 
             {
                 summonerFlex === undefined ? <></> : (
-                    <div className='row flexQueue'>
-                        <div className='col'>
+                    <div className='flexQueue'>
+                        <div className='tierIcon'>
                             <TierIconUrl tier={summonerFlex.tier} />
                         </div>
-                        <div className='col'>
-                            <div className='row'>
-                                {capitalizeFirstLetter(summonerFlex.tier)} 
-                                {romanToArabicMap[summonerFlex.rank]}
-                                LP {summonerFlex.leaguePoints}
+                        <div className='rankSummary'>
+                            <div className='rankType'>Ranked Flex</div>
+                            <div className='rankInfo'>
+                                <span className='rank'>{capitalizeFirstLetter(summonerFlex.tier)} {romanToArabicMap[summonerFlex.rank]}</span>
+                                <span className='dot'>·</span>
+                                <span className='lpPoints'>{summonerFlex.leaguePoints} LP</span> 
                             </div>
-                            <div className='row'>
-                                {summonerFlex.wins}W 
-                                {summonerFlex.losses}L 
-                                {((summonerFlex.wins/(summonerFlex.wins+summonerFlex.losses))*100).toFixed(1)}%
+                            <div className='rankWinrate'>
+                                <span className='gamesWinLoss'>{summonerFlex.wins}</span>
+                                <span>W</span>
+                                <span className='gamesWinLoss'>{summonerFlex.losses}</span>
+                                <span>L</span>
+                                <span className='dot'>·</span>
+                                <span className='winratePercent'  style={{color : winratePercentColorFlex}}>{winratePercentFlex}%</span>
+                                
+                                
                             </div>
-                            <div className='row'>
-                                <ProgressBarWinRate win={((summonerFlex.wins/(summonerFlex.wins+summonerFlex.losses))*100).toFixed(1)} losse={100-((summonerFlex.wins/(summonerFlex.wins+summonerFlex.losses))*100).toFixed(1)}/>
+                            <div className='progressWinRate'>
+                                <ProgressBarWinRate win={winratePercentFlex} />
                             </div>
                         </div>
                     </div>

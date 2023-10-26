@@ -93,7 +93,7 @@ export function ChampIconUrl({ champIconName }) {
 export function ItemsIconsUrl({ itemIconId , item}) {
     if (itemIconId === 0){
         return (
-            <div className={item} style={{backgroundColor:"white", height: 16 , width: 16}}>
+            <div className={'noItem'} style={{ height: 24 , width: 24}}>
             </div>
             
         )
@@ -102,7 +102,7 @@ export function ItemsIconsUrl({ itemIconId , item}) {
     const itemIconUrl = `http://ddragon.leagueoflegends.com/cdn/13.20.1/img/item/${itemIconId}.png`;
     return (
         <div className={item}>
-            <img src={itemIconUrl} alt="Item Icon" height={16} width={16} />
+            <img src={itemIconUrl} alt="Item Icon" height={24} width={24} />
         </div>
         
     )
@@ -116,7 +116,7 @@ export function SummonerSpellIconUrl({ summonerSpeelIconId }) {
     const champIconUrl = `http://localhost:5173/src/img/summonerSpell/${summonerSpeelIconId}.png`;
     return (
         <div>
-            <img src={champIconUrl} alt="Champ Icon" height={16} width={16} />
+            <img src={champIconUrl} alt="Champ Icon" height={20} width={20} />
 
         </div>
     )
@@ -130,7 +130,7 @@ export function RuneIconUrl({ runeIconId }) {
     const champIconUrl = `http://localhost:5173/src/img/rune/${runeIconId}.png`;
     return (
         <div>
-            <img src={champIconUrl} alt="Champ Icon" height={16} width={16} />
+            <img src={champIconUrl} alt="Champ Icon" height={20} width={20} />
 
         </div>
     )

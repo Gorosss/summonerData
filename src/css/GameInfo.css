@@ -11,19 +11,19 @@
 
 }
 
-.game.win .match{
+.game.win .match {
     background-color: #202b5f;
 }
 
-.game.win .match:hover{
+.game.win .match:hover {
     background-color: #1d224b;
 }
 
-.game.loss .match{
+.game.loss .match {
     background-color: #3b233b;
 }
 
-.game.loss .match:hover{
+.game.loss .match:hover {
     background-color: #311f3a;
 }
 
@@ -32,11 +32,11 @@
     display: grid;
     list-style: none;
     gap: 10px;
-    padding-right: 40px;
-    padding-left: 20px;
+    padding-right: 30px;
     padding-bottom: 10px;
+    padding-top: 10px;
     width: 100%;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)) !important;
+    grid-template-columns: 100px 100px 100px 80px repeat(2, minmax(100px, 1fr));
 
     justify-items: center;
     align-items: center;
@@ -52,17 +52,61 @@
 
 .summoner {
     display: flex;
+    align-items: center;
 }
 
+.queueType {
+    color: #fff;
+    text-align: center;
+    font-family: Inter;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.elapsedTime {
+    color: #cddcfe;
+    text-align: center;
+    font-family: Inter;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.gameResult {
+    font-size: 12px;
+    font-weight: 700;
+    margin-right: 3px;
+}
+
+.gameResult.win{
+    color: #3273fa;
+}
+
+.gameResult.loss{
+    color: #ff4e50;
+}
+
+.gameDuration {
+    font-size: 12px;
+    font-weight: 500;
+    color: #cddcfe;
+}
 
 .summonerChamp,
-.summonerSpells,
-.summonerRunes {
+.summonerSpells{
     margin-left: 5px;
     margin-right: 5px;
 }
 
-
+.summonerRunes {
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-bottom: 4px;
+    border-radius: 4px;
+}
 
 .summonerChamp {
     position: relative;
@@ -70,17 +114,29 @@
     height: 55px;
 }
 
-.summonerChamp img {
+.summonerChamp.win img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
     border-style: solid;
-    border-width: 1px;
+    border-width: 2px;
+    border-color: #3273fa;
 
 }
 
-.summonerChampLevel {
+.summonerChamp.loss img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #ff4e50;
+
+}
+
+.summonerChamp.win .summonerChampLevel {
     position: absolute;
     width: 23px;
     height: 23px;
@@ -93,10 +149,88 @@
     border-style: solid;
     border-width: 1px;
     text-align: center;
-    background-color: white;
-    color: black;
+    background-color: rgb(32, 45, 55);
+    color: rgb(255, 255, 255);
+    border-color: #3273fa;
+
 }
 
+.summonerChamp.loss .summonerChampLevel {
+    position: absolute;
+    width: 23px;
+    height: 23px;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    bottom: 0;
+    right: 0;
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 1px;
+    text-align: center;
+    background-color: rgb(32, 45, 55);
+    color: rgb(255, 255, 255);
+    border-color: #ff4e50;
+
+}
+
+.game.win .kda {
+    color: #2a489c;
+}
+
+.game.loss .kda {
+    color: #53263e;
+}
+
+.kda span{
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 17px;
+    white-space: nowrap;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+.kills{
+    color: #3CBC8D;
+}
+
+.deaths {
+    color: #E9422E;
+}
+
+.assists {
+    color: #FAC552;
+}
+
+.cs {
+    margin-top: 6px;
+    line-height: 13px;
+    font-size: 11px;
+    color: #cddcfe;
+    font-weight: 400;
+}
+
+.kdaSummary {
+    margin-top: 6px;
+    line-height: 13px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.visionScore {
+    padding: 4px 0 0;
+    font-size: 11px;
+    font-weight: 400;
+    color: #cddcfe;
+}
+
+.killParticipation {
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 17px;
+    white-space: nowrap;
+}
 
 .champ {
     position: relative;
@@ -111,6 +245,7 @@
     border-radius: 50%;
     border-style: solid;
     border-width: 1px;
+    border-color: #f2bf43;
 
 }
 
@@ -127,9 +262,12 @@
     border-style: solid;
     border-width: 1px;
     text-align: center;
-    background-color: white;
-    color: black;
+    background-color: rgb(32, 45, 55);
+    color: rgb(255, 255, 255);
+    border-color: #f2bf43;
+    
 }
+
 
 .summonerItems {
 
@@ -142,15 +280,36 @@
     grid-template-areas:
         "item-0 item-1 item-2 item-6"
         "item-3 item-4 item-5 item-6";
-    width: 13rem;
+    width: 170px;
 
 }
+
+.summonerSpells div img ,.summonerItems div img, .summonerItems div{
+    border-radius:4px
+}
+
+.game.win .summonerItems .noItem, .game.win .summonerRunes{
+    background-color: #223b80;
+}
+
+.game.loss .summonerItems .noItem, .game.loss .summonerRunes {
+    background-color: #53263e;
+}
+
+ .game.win .team2 .summonerRunes {
+    background-color: #53263e;
+}
+
+.game.loss .team2 .summonerRunes {
+    background-color: #223b80;
+}
+
 
 
 
 .summonersList {
     font-size: 14px;
-    
+
     display: grid;
     gap: 1px;
     -webkit-box-pack: center;
@@ -164,37 +323,53 @@
         "item-3 botlane item-8"
         "item-4 support item-9";
     width: 13rem;
-    
+
 
 }
 
-.summonersList p{
-width: 40px; 
-
-
-  max-width: 100%; 
-  overflow: hidden;
-  white-space: nowrap; 
-  text-overflow: ellipsis; 
-  margin: 0;
+.summonersList div{
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-top: -4px;
+    min-height: 24px;
 }
-.teamId100{
+
+.summonersList p {
+    width: 40px;
+    font-size: 10px;
+
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin: 0;
+}
+
+.teamId100 {
     text-align: right;
     margin-right: 4px !important;
 }
-.teamId200{
+
+.teamId200 {
     text-align: left;
     margin-left: 4px !important;
 }
 
-.topIcon, .jungleIcon, .midIcon, .botIcon, .supIcon {
+.topIcon,
+.jungleIcon,
+.midIcon,
+.botIcon,
+.supIcon {
     margin-right: 4px;
     margin-left: 4px;
 }
 
 
-.summonersList div{
-   display: flex; 
+.summonersList div {
+    display: flex;
 }
 
 .summonersList img {
@@ -202,7 +377,19 @@ width: 40px;
     border-radius: 50%;
     border-style: solid;
     border-width: 1px;
+    color: #f2bf43;
 
+}
+
+.gameInfo .row-header{
+    display: grid;
+    grid-template-columns: 32% 7% 13% 13% 8% 7% 8% 14%;
+    padding: 18px 12px 8px;
+    color: #cddcfe;
+    font-size: 12px;
+    font-weight: 400;
+    text-align: center;
+    background-color: #1a1836;
 }
 
 .participant {
@@ -217,15 +404,99 @@ width: 40px;
     align-items: center;
     justify-content: center;
 
-    border: 1px;
-    border-radius: 1px;
-    border-color: black;
-    border-style: solid;
+  
+}
+
+.game.win .participant.team1{
+    background-color: #212653;
+}
+
+.game.win .participant.team2{
+    background-color: #2f1f38;
+}
+
+.game.loss .participant.team1{
+    background-color: #2f1f38;
+}
+
+.game.loss .participant.team2{
+    background-color: #212653;
+}
+
+.game.win .gameInfo .team1 .status-label {
+    font-size: 14px;
+    color: #3273fa;
+    font-weight: 700;
+}
+
+.game.win .gameInfo .team2 .status-label {
+    font-size: 14px;
+    color: #ff4e50;
+    font-weight: 700;
+}
+
+.game.loss .gameInfo .team1 .status-label {
+    font-size: 14px;
+    color: #ff4e50;
+    font-weight: 700;
+}
+
+.game.loss .gameInfo .team2 .status-label {
+    font-size: 14px;
+    color: #3273fa;
+    font-weight: 700;
+}
+
+.game.loss .gameInfo .team1 .DMG {
+    background-color: #ff4e50;
+}
+
+.game.win .gameInfo .team2 .DMG {
+    background-color: #ff4e50;
 }
 
 
+.gameInfo .row-header{
+    color: #cddcfe;
+    font-size: 12px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.gameInfo .team1 .kda, .gameInfo .team2 .kda{
+    
+    color: #cddcfe;
+    text-align: center;
+    font-family: Inter;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+ 
+}
+
+.team1 .kda span, .team2 .kda span {
+    margin-top: 6px;
+    line-height: 13px;
+    font-size: 11px;
+    color: #cddcfe;
+    font-weight: 400;
+} 
+
+
+
+
 .items {
-    display: flex;
+    display: grid;
+    gap: 3px;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    grid-template-areas:
+        "item-0 item-1 item-2 item-6"
+        "item-3 item-4 item-5 item-6";
+    width: 170px;
 }
 
 .item0 {

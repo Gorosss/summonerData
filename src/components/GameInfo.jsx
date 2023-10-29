@@ -82,7 +82,7 @@ export function GameInfo({ summonerInfo, matchInfo }) {
             <div className={summonerMatch.win ? 'game win' : 'game loss'} >
 
 
-                <div className='match'>
+                <div onClick={toggleGameInfo} className='match'>
                     <div className='matchInfo'>
                         <div className='col gameData'>
                             <div className='queueType'>
@@ -103,7 +103,7 @@ export function GameInfo({ summonerInfo, matchInfo }) {
                                     ) : (
                                         <>
                                             <span className='gameResult loss'>LOSS</span>
-                                            <span className='gameDuration'>{Math.round(match.gameDuration / 60)}</span>
+                                            <span className='gameDuration'>{Math.round(match.gameDuration / 60)}:{match.gameDuration % 60}</span>
 
                                         </>
 
@@ -207,7 +207,7 @@ export function GameInfo({ summonerInfo, matchInfo }) {
                             </div>
                         </div>
                         {team1.map(participant => (
-                            <div key={participant.id} className='participant team1'>
+                            <div key={participant.id} className={`participant team1 ${participant.puuid === summonerMatch.puuid ? "summoner" : ""}`}>
 
 
 

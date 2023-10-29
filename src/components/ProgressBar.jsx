@@ -12,6 +12,25 @@ export const ProgressBarDMG = ({ dmg, maxDmg }) => {
 };
 
 
+export const ProgressBarMastery = ({ pointsEarned, pointsToNextLevel }) => {
+
+  const progress = (pointsEarned / (pointsEarned + pointsToNextLevel)) * 100;
+  const remainingProgress = 100 - progress;
+
+  return (
+    <div className="progress-container">
+      <div className="progress masteryPoints" style={{ width: `${progress}%` }}>
+        
+      </div>
+      <div className="progress masteryPoints remaining" style={{ width: `${remainingProgress}%` }}>
+        
+      </div>
+    </div>
+  );
+};
+
+
+
 export const ProgressBarWinRate = ({ win }) => {
   const progress1 = win 
   const progress2 = 100-win

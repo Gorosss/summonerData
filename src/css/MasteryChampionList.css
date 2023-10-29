@@ -2,3 +2,19 @@
     filter: brightness(0%) opacity(15%);
     -webkit-filter: brightness(1%) opacity(15%);
 }
+
+.kAfkVG div:first-child{
+    width: 100%;
+}
+
+.masteryChampList {
+    padding-top: 10px;
+}
+
+.my-custom-table div{
+    border-radius: 4px ;
+    background-color: #2c274f; /* Estilo del fondo */
+    color: #dbdbdb; /* Color del texto */
+    font-family: 'Roboto', sans-serif; /* Fuente Roboto */
+    font-size: 12px; /* Tamaño de fuente */
+  }

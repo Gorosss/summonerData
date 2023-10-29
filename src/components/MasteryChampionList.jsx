@@ -4,20 +4,21 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/MasteryChampionList.css'
 import DataTable from 'react-data-table-component';
 
-import { ProgressBarDMG } from '../components/ProgressBar.jsx';
+import { ProgressBarMastery } from '../components/ProgressBar.jsx';
+
+
 
 
 
 
 let champList = champData.data;
-console.log(champList)
 
 const columns = [
   {
     name: '#', 
     selector: row => getChampionImg(row.championId),
     sortable: false,
-    width: "5%",
+    width: "10%",
   },
   {
     name: 'Champ', 
@@ -29,18 +30,18 @@ const columns = [
     name: 'Mastery', 
     selector: row => row.championLevel,
     sortable: true,
-    width: "15%",
+    width: "8%",
   },
   {
     name: 'Points', 
     selector: row => row.championPoints,
     sortable: true,
-    width: "10%",
+    width: "15%",
   },
   {
     name: 'Chest granted', 
     selector: row => getChestImg(row.chestGranted),
-    sortable: true,
+    sortable: false,
     width: "10%",
   },
   {
@@ -53,7 +54,7 @@ const columns = [
     name: 'Points need for next level', 
     selector: row => getPointsUntilNextLvl(row.championLevel, row.championPointsUntilNextLevel),
     sortable: false,
-    width: "25%",
+    width: "20%",
   },
 ]
 
@@ -64,11 +65,11 @@ export function MasteryChampionList({masteryChampionList}) {
    <DataTable
       columns={columns}
       data = {masteryChampionList}
-      striped = {true} 
       defaultSortFieldId = {3}
       defaultSortAsc = {false}
       fixedHeader = {false}
       noDataComponent = {'Insert your summoner name'}
+      className="my-custom-table"
       
     />
   );
@@ -130,7 +131,7 @@ function getMasteryProgression(masteredLvl, tokensEarned, pointsSinceLastLevel,p
   }else if (masteredLvl == 5) {
     return getMasteryTokens(tokensEarned,masteredLvl);
   }else {
-    return (<ProgressBarDMG dmg={pointsSinceLastLevel} maxDmg={(pointsSinceLastLevel + pointsUntilNextLvl)}/>);
+    return (<ProgressBarMastery pointsEarned={pointsSinceLastLevel} pointsToNextLevel={pointsUntilNextLvl}/>);
   }
 }
 

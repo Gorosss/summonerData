@@ -2,3 +2,76 @@
     background-color: #2c274f;
     border-radius: 4px;
 }
+
+
+.liveGameInfo .row-header{
+    display: grid;
+    grid-template-columns: 32% 7% 22% 5% 17%;
+    padding: 18px 12px 8px;
+    color: #cddcfe;
+    font-size: 12px;
+    font-weight: 400;
+    text-align: center;
+    background-color: #1a1836;
+}
+
+.liveGameInfo .runesDisplay{
+    display: grid;
+    grid-template-columns: 15% 15% 15%;
+    color: #cddcfe;
+    font-size: 12px;
+    font-weight: 400;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background-color: #1a1836;
+}
+
+.liveGameInfo .runesDisplay{
+    display: flex;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.divider {
+    width: 1px;
+    height: 172px;
+    background: #2c274f;
+    margin: 0px 8px;
+}
+
+
+.primary div ,.secondary div, .runeStats div{
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin: 2px;
+}
+
+.liveParticipant .info{
+    padding: 10px;
+    display: grid;
+    list-style: none;
+    gap: 10px;
+    width: 100%;
+    grid-template-columns: repeat(4, minmax(80px, 1fr)) 15% 8%  !important;
+
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+
+  
+}
+
+.team1 .info > div:first-child {
+    color: #3273fa;
+}
+
+.team2 .info > div:first-child {
+    color: #ff4e50;
+}
+
+.gameType {
+    text-align: left
+}

@@ -12,28 +12,16 @@ import { summonerNameApi } from '../api/apiCalls.jsx'
 import { Header } from '../components/Header.jsx'
 import { HeadProfile } from '../components/HeadProfile.jsx'
 import { SummonerNavbar } from '../components/SummonerNavbar.jsx'
-import { MasteryChampionList } from '../components/MasteryChampionList.jsx'
 
 
-import MasteryPoints from '../jsons/champMastery.json'
+import { LiveGame } from '../components/LiveGame.jsx'
 
 
-
-
-
+import spectator from '../jsons/spectator1.json'
 
 
 
-export function HistoryProfile() {
-
-}
-
-export function StatsProfile() {
-
-}
-
-
-export function SummonerMasteryPage() {
+export function LiveGamePage() {
   const { reg, summonerName } = useParams();
   const [summonerInfo, setSummoner] = useState(); // Initialize the state with null or an initial value
 
@@ -69,7 +57,7 @@ export function SummonerMasteryPage() {
             </div>
             <SummonerNavbar />
             <div className="row masteryChampList">
-              <MasteryChampionList masteryChampionList={MasteryPoints}/>
+              <LiveGame summonerInfo={summonerInfo} liveGameInfo={spectator}/>
             </div>
 
 
@@ -84,4 +72,4 @@ export function SummonerMasteryPage() {
 }
 
 
-export default SummonerMasteryPage 
+export default LiveGamePage 

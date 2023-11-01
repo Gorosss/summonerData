@@ -29,7 +29,6 @@ export function HomePage() {
     
         const url = `/profile/${region}/${summonerName}`;
 
-        console.log(url)
         
         navigate(url);
       };

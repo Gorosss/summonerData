@@ -47,3 +47,7 @@
     text-align: center;
 }
 
+
+li:hover {
+  cursor: pointer;
+}

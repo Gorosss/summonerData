@@ -28,3 +28,14 @@ puuid: fanR1676lxod5z_VYp82vwejh6zlCk8Z29Txg7NVDfva7OUIg3-NjXibZE-UaiXtlXdfid5o6
 
 
 
+"id": "Y1PUX6fhg0aK8_zny58-Oy5eLmd5ruKMUWTrYEVRq5yTnSQ",
+    "accountId": "NRlNmAce01BxANA2FYUh7C58mBW-vCEwJQP4qcbrP2AMFg",
+    "puuid": "ZISjgohMPpqrz3wrgsUA-p83Bzea7wLdLJxwagFdNwH2dBPM67J_-Qdmi9Yo6oWjplbDsHdOeYpKqw",
+    "name": "Mubi",
+    "profileIconId": 6338,
+    "revisionDate": 1698766311017,
+    "summonerLevel": 486
+
+
+
+    

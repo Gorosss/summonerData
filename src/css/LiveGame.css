@@ -3,10 +3,14 @@
     border-radius: 4px;
 }
 
+.gameType {
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
 
 .liveGameInfo .row-header{
     display: grid;
-    grid-template-columns: 32% 7% 22% 5% 17%;
+    grid-template-columns: 43% 9% 28% 7% 18%;
     padding: 18px 12px 8px;
     color: #cddcfe;
     font-size: 12px;

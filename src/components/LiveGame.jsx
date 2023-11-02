@@ -8,6 +8,7 @@ import { SummonerSpellIconUrl, RuneIconUrl } from '../api/apiCalls.jsx'
 import { GetChampionImg } from '../api/dataCalls.jsx'
 
 import { GetPrimaryRunes, GetSecondaryRunes, RunesStats } from '../components/RunesTemplate.jsx'
+import { TimeCounter } from '../components/TimeCounter.jsx'
 
 
 
@@ -62,6 +63,12 @@ export function LiveGame({ summonerInfo, liveGameInfo }) {
         }
     };
 
+    function formatTime(seconds) {
+        const minutos = Math.floor(seconds / 60);
+        const segundos = seconds % 60;
+        return `${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+      }
+
     return (
 
         <>
@@ -70,12 +77,11 @@ export function LiveGame({ summonerInfo, liveGameInfo }) {
 
             <div className='liveGameInfo'>
                 <div className='gameType'>
-                    {queueIdMap[liveGameInfo.gameQueueConfigId]} | {mapIdMap[liveGameInfo.mapId]} | {liveGameInfo.gameLength}
+                    {queueIdMap[liveGameInfo.gameQueueConfigId]} | {mapIdMap[liveGameInfo.mapId]} | {<TimeCounter initialTime={liveGameInfo.gameLength}/>}
                 </div>
                 <div className="row-header team1">
                     <div>
                         Blue Team
-
                     </div>
                     <div>Elo</div>
                     <div>Rankded</div>
@@ -125,7 +131,10 @@ export function LiveGame({ summonerInfo, liveGameInfo }) {
                                 </button>
                             </div>
                             <div className='ban'>
-                                <GetChampionImg championId={participant.championId} />
+                                {team1Bans.length > 0 && (
+                                    <GetChampionImg championId={team1Bans.shift().championId} />
+                                )}
+
                             </div>
                         </div>
 
@@ -133,16 +142,16 @@ export function LiveGame({ summonerInfo, liveGameInfo }) {
                         {activeRunesIndexes.includes(participant.puuid) &&
                             <div className='runesDisplay'>
                                 <div className='primary'>
-                                    <GetPrimaryRunes perkStyle={participant.perks.perkStyle} runeId={participant.perks.perkIds[0]}/>
-                                    <GetSecondaryRunes perkSubStyle={participant.perks.perkStyle} runesIds={participant.perks.perkIds.slice(1, 4)}/>
+                                    <GetPrimaryRunes perkStyle={participant.perks.perkStyle} runeId={participant.perks.perkIds[0]} />
+                                    <GetSecondaryRunes perkSubStyle={participant.perks.perkStyle} runesIds={participant.perks.perkIds.slice(1, 4)} />
                                 </div>
                                 <div className="divider"></div>
                                 <div className='secondary'>
-                                    <GetSecondaryRunes perkSubStyle={participant.perks.perkSubStyle} runesIds={participant.perks.perkIds.slice(4, 6)}/>
+                                    <GetSecondaryRunes perkSubStyle={participant.perks.perkSubStyle} runesIds={participant.perks.perkIds.slice(4, 6)} />
                                 </div>
                                 <div className="divider"></div>
                                 <div className='runeStats'>
-                                    <RunesStats runesIds={participant.perks.perkIds.slice(6, 9)}/>
+                                    <RunesStats runesIds={participant.perks.perkIds.slice(6, 9)} />
                                 </div>
                             </div>
                         }
@@ -157,6 +166,7 @@ export function LiveGame({ summonerInfo, liveGameInfo }) {
                     </div>
                     <div>Elo</div>
                     <div>Rankded</div>
+                    <div>Runes</div>
                     <div>Ban</div>
                 </div>
                 {team2.map(participant => (
@@ -203,24 +213,26 @@ export function LiveGame({ summonerInfo, liveGameInfo }) {
                                 </button>
                             </div>
                             <div className='ban'>
-                                <GetChampionImg championId={participant.championId} />
+                                {team2Bans.length > 0 && (
+                                    <GetChampionImg championId={team2Bans.shift().championId} />
+                                )}
                             </div>
                         </div>
 
 
                         {activeRunesIndexes.includes(participant.puuid) &&
                             <div className='runesDisplay'>
-                                 <div className='primary'>
-                                    <GetPrimaryRunes perkStyle={participant.perks.perkStyle} runeId={participant.perks.perkIds[0]}/>
-                                    <GetSecondaryRunes perkSubStyle={participant.perks.perkStyle} runesIds={participant.perks.perkIds.slice(1, 4)}/>
+                                <div className='primary'>
+                                    <GetPrimaryRunes perkStyle={participant.perks.perkStyle} runeId={participant.perks.perkIds[0]} />
+                                    <GetSecondaryRunes perkSubStyle={participant.perks.perkStyle} runesIds={participant.perks.perkIds.slice(1, 4)} />
                                 </div>
                                 <div className="divider"></div>
                                 <div className='secondary'>
-                                    <GetSecondaryRunes perkSubStyle={participant.perks.perkSubStyle} runesIds={participant.perks.perkIds.slice(4, 6)}/>
+                                    <GetSecondaryRunes perkSubStyle={participant.perks.perkSubStyle} runesIds={participant.perks.perkIds.slice(4, 6)} />
                                 </div>
                                 <div className="divider"></div>
                                 <div className='runeStats'>
-                                    <RunesStats runesIds={participant.perks.perkIds.slice(6, 9)}/>
+                                    <RunesStats runesIds={participant.perks.perkIds.slice(6, 9)} />
                                 </div>
                             </div>
                         }

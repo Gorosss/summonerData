@@ -9,6 +9,12 @@
 
 .masteryChampList {
     padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 50px;
+}
+
+.liveGameInfo {
+    padding-bottom: 10px;
 }
 
 .my-custom-table div{

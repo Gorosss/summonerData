@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import '../css/LiveGame.css'
 import 'bootstrap/dist/css/bootstrap.css';
@@ -7,13 +7,15 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { SummonerSpellIconUrl, RuneIconUrl } from '../api/apiCalls.jsx'
 import { GetChampionImg } from '../api/dataCalls.jsx'
 
-import { PrimaryDominationRune, SecondaryDominationRune, RunesStats} from '../components/RunesTemplate.jsx'
+import { GetPrimaryRunes, GetSecondaryRunes, RunesStats } from '../components/RunesTemplate.jsx'
 
 
 
 
 export function LiveGame({ summonerInfo, liveGameInfo }) {
 
+
+    const [activeRunesIndexes, setActiveRunesIndexes] = useState([]);
 
 
     const queueIdMap = {
@@ -47,6 +49,19 @@ export function LiveGame({ summonerInfo, liveGameInfo }) {
     const team1 = liveGameInfo.participants.slice(0, 5)
     const team2 = liveGameInfo.participants.slice(5)
 
+    const team1Bans = liveGameInfo.bannedChampions.filter((banChamp) => banChamp.teamId === 100)
+    const team2Bans = liveGameInfo.bannedChampions.filter((banChamp) => banChamp.teamId === 200)
+
+
+
+    const toggleRunes = (puuid) => {
+        if (activeRunesIndexes.includes(puuid)) {
+            setActiveRunesIndexes(activeRunesIndexes.filter((i) => i !== puuid));
+        } else {
+            setActiveRunesIndexes([...activeRunesIndexes, puuid]);
+        }
+    };
+
     return (
 
         <>
@@ -57,7 +72,7 @@ export function LiveGame({ summonerInfo, liveGameInfo }) {
                 <div className='gameType'>
                     {queueIdMap[liveGameInfo.gameQueueConfigId]} | {mapIdMap[liveGameInfo.mapId]} | {liveGameInfo.gameLength}
                 </div>
-                <div class="row-header team1">
+                <div className="row-header team1">
                     <div>
                         Blue Team
 
@@ -68,7 +83,7 @@ export function LiveGame({ summonerInfo, liveGameInfo }) {
                     <div>Bans</div>
                 </div>
                 {team1.map(participant => (
-                    <div key={participant.id} className={`liveParticipant team1 ${participant.puuid === summonerMatch.puuid ? "liveSummoner" : ""}`}>
+                    <div key={participant.puuid} className={`liveParticipant team1 ${participant.puuid === summonerMatch.puuid ? "liveSummoner" : ""}`}>
 
 
                         <div className='info'>
@@ -84,8 +99,14 @@ export function LiveGame({ summonerInfo, liveGameInfo }) {
                                 </div>
 
                                 <div className='summonerRunes'>
-                                    <RuneIconUrl runeIconId={participant.perks.perkStyle} />
-                                    <RuneIconUrl runeIconId={participant.perks.perkSubStyle} />
+                                    <div>
+                                        <RuneIconUrl runeIconId={participant.perks.perkStyle} />
+
+                                    </div>
+                                    <div>
+                                        <RuneIconUrl runeIconId={participant.perks.perkSubStyle} />
+
+                                    </div>
                                 </div>
 
                             </div>
@@ -99,7 +120,7 @@ export function LiveGame({ summonerInfo, liveGameInfo }) {
                                 summonerrankwinrate
                             </div>
                             <div className='runes'>
-                                <button>
+                                <button onClick={() => toggleRunes(participant.puuid)}>
                                     Runes ▼
                                 </button>
                             </div>
@@ -109,27 +130,28 @@ export function LiveGame({ summonerInfo, liveGameInfo }) {
                         </div>
 
 
-
-                        <div className='runesDisplay'>
-                            <div className='primary'>
-                                <PrimaryDominationRune />
-                                <SecondaryDominationRune />
+                        {activeRunesIndexes.includes(participant.puuid) &&
+                            <div className='runesDisplay'>
+                                <div className='primary'>
+                                    <GetPrimaryRunes perkStyle={participant.perks.perkStyle} runeId={participant.perks.perkIds[0]}/>
+                                    <GetSecondaryRunes perkSubStyle={participant.perks.perkStyle} runesIds={participant.perks.perkIds.slice(1, 4)}/>
+                                </div>
+                                <div className="divider"></div>
+                                <div className='secondary'>
+                                    <GetSecondaryRunes perkSubStyle={participant.perks.perkSubStyle} runesIds={participant.perks.perkIds.slice(4, 6)}/>
+                                </div>
+                                <div className="divider"></div>
+                                <div className='runeStats'>
+                                    <RunesStats runesIds={participant.perks.perkIds.slice(6, 9)}/>
+                                </div>
                             </div>
-                            <div class="divider"></div>
-                            <div className='secondary'>
-                                <SecondaryDominationRune />
-                            </div>
-                            <div class="divider"></div>
-                            <div className='runeStats'>
-                                <RunesStats />
-                            </div>
-                        </div>
+                        }
 
                     </div>
 
 
                 ))}
-                <div class="row-header team2">
+                <div className="row-header team2">
                     <div>
                         Red Team
                     </div>
@@ -138,50 +160,73 @@ export function LiveGame({ summonerInfo, liveGameInfo }) {
                     <div>Ban</div>
                 </div>
                 {team2.map(participant => (
-                    <div key={participant.id} className={`liveParticipant team2 ${participant.puuid === summonerMatch.puuid ? "liveSummoner" : ""}`}>
+                    <div key={participant.puuid} className={`liveParticipant team2 ${participant.puuid === summonerMatch.puuid ? "liveSummoner" : ""}`}>
 
 
 
-                        <div className='summoner'>
+                        <div className='info'>
+                            <div className='summoner'>
 
-                            <div className='champ'>
+                                <div className='champ'>
+                                    <GetChampionImg championId={participant.championId} />
+
+                                </div>
+                                <div className='summonerSpells'>
+                                    <SummonerSpellIconUrl summonerSpeelIconId={participant.spell1Id} />
+                                    <SummonerSpellIconUrl summonerSpeelIconId={participant.spell2Id} />
+                                </div>
+
+                                <div className='summonerRunes'>
+                                    <div>
+                                        <RuneIconUrl runeIconId={participant.perks.perkStyle} />
+
+                                    </div>
+                                    <div>
+                                        <RuneIconUrl runeIconId={participant.perks.perkSubStyle} />
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div className='summonerName'>
+                                {participant.summonerName}
+                            </div>
+                            <div className='elo'>
+                                summonerElo
+                            </div>
+                            <div className='rankwinrate'>
+                                summonerrankwinrate
+                            </div>
+                            <div className='runes'>
+                                <button onClick={() => toggleRunes(participant.puuid)}>
+                                    Runes ▼
+                                </button>
+                            </div>
+                            <div className='ban'>
                                 <GetChampionImg championId={participant.championId} />
                             </div>
-                            <div className='summonerSpells'>
-                                <SummonerSpellIconUrl summonerSpeelIconId={participant.spell1Id} />
-                                <SummonerSpellIconUrl summonerSpeelIconId={participant.spell2Id} />
+                        </div>
+
+
+                        {activeRunesIndexes.includes(participant.puuid) &&
+                            <div className='runesDisplay'>
+                                 <div className='primary'>
+                                    <GetPrimaryRunes perkStyle={participant.perks.perkStyle} runeId={participant.perks.perkIds[0]}/>
+                                    <GetSecondaryRunes perkSubStyle={participant.perks.perkStyle} runesIds={participant.perks.perkIds.slice(1, 4)}/>
+                                </div>
+                                <div className="divider"></div>
+                                <div className='secondary'>
+                                    <GetSecondaryRunes perkSubStyle={participant.perks.perkSubStyle} runesIds={participant.perks.perkIds.slice(4, 6)}/>
+                                </div>
+                                <div className="divider"></div>
+                                <div className='runeStats'>
+                                    <RunesStats runesIds={participant.perks.perkIds.slice(6, 9)}/>
+                                </div>
                             </div>
-
-                            <div className='summonerRunes'>
-                                <RuneIconUrl runeIconId={participant.perks.perkStyle} />
-                                <RuneIconUrl runeIconId={participant.perks.perkSubStyle} />
-                            </div>
-
-                        </div>
-                        <div className='summonerName'>
-                            {participant.summonerName}
-                        </div>
-                        <div className='elo'>
-                            summonerElo
-                        </div>
-                        <div className='rankwinrate'>
-                            summonerrankwinrate
-                        </div>
-                        <div className='runes'>
-                            <button>
-                                Runes ▼
-                            </button>
-                        </div>
-                        <div className='ban'>
-                            <GetChampionImg championId={participant.championId} />
-                        </div>
-
-
-
-
-
+                        }
 
                     </div>
+
                 ))}
             </div>
 

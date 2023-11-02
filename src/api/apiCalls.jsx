@@ -129,10 +129,10 @@ export function RuneIconUrl({ runeIconId }) {
 
     const champIconUrl = `http://localhost:5173/src/img/rune/${runeIconId}.png`;
     return (
-        <div>
+        <>
             <img src={champIconUrl} alt="Champ Icon" height={20} width={20} />
 
-        </div>
+        </>
     )
 
 }

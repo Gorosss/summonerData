@@ -1,0 +1,10 @@
+.perkInactive {
+    filter: grayscale(100%);
+    opacity: .27;
+}
+
+.primary img ,.secondary img{
+    width: 28px;
+    height: 28px;
+    margin: 3px;
+  }

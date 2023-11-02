@@ -17,7 +17,7 @@ import { SummonerNavbar } from '../components/SummonerNavbar.jsx'
 import { LiveGame } from '../components/LiveGame.jsx'
 
 
-import spectator from '../jsons/spectator1.json'
+import spectator from '../jsons/spectator2.json'
 
 
 

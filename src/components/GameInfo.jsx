@@ -127,8 +127,14 @@ export function GameInfo({ summonerInfo, matchInfo }) {
                                 <SummonerSpellIconUrl summonerSpeelIconId={summonerMatch.summoner2Id} />
                             </div>
                             <div className='summonerRunes'>
+                                <div>
                                 <RuneIconUrl runeIconId={summonerMatch.perks.styles[0].selections[0].perk} />
+
+                                </div>
+                                <div>
                                 <RuneIconUrl runeIconId={summonerMatch.perks.styles[1].style} />
+
+                                </div>
                             </div>
                         </div>
 
@@ -226,8 +232,14 @@ export function GameInfo({ summonerInfo, matchInfo }) {
                                     </div>
 
                                     <div className='summonerRunes'>
+                                        <div>
                                         <RuneIconUrl runeIconId={participant.perks.styles[0].selections[0].perk} />
+
+                                        </div>
+                                        <div>
                                         <RuneIconUrl runeIconId={participant.perks.styles[1].style} />
+
+                                        </div>
                                     </div>
 
                                 </div>
@@ -317,8 +329,14 @@ export function GameInfo({ summonerInfo, matchInfo }) {
                                     </div>
 
                                     <div className='summonerRunes'>
+                                        <div>
                                         <RuneIconUrl runeIconId={participant.perks.styles[0].selections[0].perk} />
+
+                                        </div>
+                                        <div>
                                         <RuneIconUrl runeIconId={participant.perks.styles[1].style} />
+                                            
+                                        </div>
                                     </div>
 
                                 </div>

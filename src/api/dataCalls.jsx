@@ -9,7 +9,6 @@ export function GetChampionImg(championId) {
 
     var champName = "";
     for (var i in champList) {
-        console.log(champList[i].key)
       if (champList[i].key == championId.championId) {
         champName = champList[i].id;
       }

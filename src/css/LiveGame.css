@@ -64,11 +64,19 @@
   
 }
 
-.team1 .info > div:first-child {
+.liveParticipant.team1 {
+    background-color: #212653;
+} 
+
+.liveParticipant.team2 {
+    background-color: #2f1f38;
+} 
+
+.row-header.team1 > div:first-child {
     color: #3273fa;
 }
 
-.team2 .info > div:first-child {
+.row-header.team2 > div:first-child {
     color: #ff4e50;
 }
 

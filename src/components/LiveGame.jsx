@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import '../css/LiveGame.css'
 import 'bootstrap/dist/css/bootstrap.css';
@@ -10,7 +10,39 @@ import { GetChampionImg } from '../api/dataCalls.jsx'
 import { GetPrimaryRunes, GetSecondaryRunes, RunesStats } from '../components/RunesTemplate.jsx'
 import { TimeCounter } from '../components/TimeCounter.jsx'
 
+import { summonerNameApi, getSummonerStats, TierMiniIconUrl } from '../api/apiCalls.jsx'
 
+
+import { ProgressBarWinRate } from '../components/ProgressBar.jsx';
+
+
+
+async function getSummonerRankedInfo({ reg, summonerName }) {
+    const [sumRankApiInfo, setSumRankApiInfo] = useState(null); // Inicializa con null
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                // Llama a las funciones y espera a que se resuelvan
+                const sumApiInfo = await summonerNameApi({ reg, summonerName });
+                const rankInfo = await getSummonerStats({ reg, summonerId: sumApiInfo.id });
+
+                // Almacena la información en el estado local
+                setSumRankApiInfo(rankInfo);
+            } catch (error) {
+                console.error('Error al obtener información del invocador:', error);
+            }
+        }
+
+        fetchData();
+    }, [reg, summonerName]);
+
+    return (
+        <div className='elo'>
+            {sumRankApiInfo && sumRankApiInfo.length > 0 && sumRankApiInfo[0].tier}
+        </div>
+    );
+}
 
 
 export function LiveGame({ summonerInfo, liveGameInfo }) {
@@ -63,11 +95,23 @@ export function LiveGame({ summonerInfo, liveGameInfo }) {
         }
     };
 
-    function formatTime(seconds) {
-        const minutos = Math.floor(seconds / 60);
-        const segundos = seconds % 60;
-        return `${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
-      }
+    function capitalizeFirstLetter(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+    }
+
+    const romanToArabicMap = {
+        I: 1,
+        II: 2,
+        III: 3,
+        IV: 4
+    }
+
+
+    function calculateWinRate({ wins, losses }) {
+        return (
+            ((wins / (wins + losses)) * 100).toFixed(1)
+        )
+    }
 
     return (
 
@@ -77,14 +121,16 @@ export function LiveGame({ summonerInfo, liveGameInfo }) {
 
             <div className='liveGameInfo'>
                 <div className='gameType'>
-                    {queueIdMap[liveGameInfo.gameQueueConfigId]} | {mapIdMap[liveGameInfo.mapId]} | {<TimeCounter initialTime={liveGameInfo.gameLength}/>}
+                    {queueIdMap[liveGameInfo.gameQueueConfigId]} | {mapIdMap[liveGameInfo.mapId]} | {<TimeCounter initialTime={liveGameInfo.gameLength} />}
                 </div>
                 <div className="row-header team1">
                     <div>
                         Blue Team
                     </div>
-                    <div>Elo</div>
-                    <div>Rankded</div>
+                    <div>EloSolo</div>
+                    <div>RankdedSolo</div>
+                    <div>EloFlex</div>
+                    <div>RankdedFlex</div>
                     <div>Runes</div>
                     <div>Bans</div>
                 </div>
@@ -106,7 +152,7 @@ export function LiveGame({ summonerInfo, liveGameInfo }) {
 
                                 <div className='summonerRunes'>
                                     <div>
-                                        <RuneIconUrl runeIconId={participant.perks.perkStyle} />
+                                        <RuneIconUrl runeIconId={participant.perks.perkIds[0]} />
 
                                     </div>
                                     <div>
@@ -114,17 +160,75 @@ export function LiveGame({ summonerInfo, liveGameInfo }) {
 
                                     </div>
                                 </div>
+                                <div className='summonerName'>
+                                    {participant.summonerName}
+                                </div>
+                            </div>
 
+                            <div className='summonerRankedInfo'>
+                                {
+                                    participant.tierSolo === 'Unranked' ?
+                                        (
+                                            <>
+                                                <div className='elo'>
+                                                    Unranked
+                                                </div>
+                                                <div className='rankwinrate'>
+                                                    -
+                                                </div>
+                                            </>) :
+                                        (
+                                            <>
+                                                <div className='elo'>
+                                                    <TierMiniIconUrl tier={participant.tierSolo}/> {capitalizeFirstLetter(participant.tierSolo)} {romanToArabicMap[participant.rankSolo]} {participant.lpSolo} LP
+                                                </div>
+                                                <div className='rankwinrate'>
+                                                    <div className='winRate'>
+                                                        {calculateWinRate({ wins: participant.winsSolo, losses: participant.lossesSolo })}% ({participant.winsSolo + participant.lossesSolo} games)
+                                                    </div>
+                                                    <div>
+                                                        < ProgressBarWinRate win={calculateWinRate({ wins: participant.winsSolo, losses: participant.lossesSolo })} />
+                                                    </div>
+
+                                                </div>
+                                            </>)
+
+
+                                }
                             </div>
-                            <div className='summonerName'>
-                                {participant.summonerName}
+
+                            <div className='summonerRankedInfo'>
+                                {
+                                    participant.tierFlex === 'Unranked' ?
+                                        (
+                                            <>
+                                                <div className='elo'>
+                                                    Unranked
+                                                </div>
+                                                <div className='rankwinrate'>
+                                                    -
+                                                </div>
+                                            </>) :
+                                        (
+                                            <>
+                                                <div className='elo'>
+                                                    <TierMiniIconUrl tier={participant.tierFlex}/> {capitalizeFirstLetter(participant.tierFlex)} {romanToArabicMap[participant.rankFlex]} {participant.lpFlex} LP
+                                                </div>
+                                                <div className='rankwinrate'>
+                                                    <div className='winRate'>
+                                                        {calculateWinRate({ wins: participant.winsFlex, losses: participant.lossesFlex })}% ({participant.winsFlex + participant.lossesFlex} games)
+                                                    </div>
+                                                    <div>
+                                                        < ProgressBarWinRate win={calculateWinRate({ wins: participant.winsFlex, losses: participant.lossesFlex })} />
+                                                    </div>
+
+                                                </div>
+                                            </>)
+
+
+                                }
                             </div>
-                            <div className='elo'>
-                                summonerElo
-                            </div>
-                            <div className='rankwinrate'>
-                                summonerrankwinrate
-                            </div>
+
                             <div className='runes'>
                                 <button onClick={() => toggleRunes(participant.puuid)}>
                                     Runes ▼
@@ -164,8 +268,10 @@ export function LiveGame({ summonerInfo, liveGameInfo }) {
                     <div>
                         Red Team
                     </div>
-                    <div>Elo</div>
-                    <div>Rankded</div>
+                    <div>EloSolo</div>
+                    <div>RankdedSolo</div>
+                    <div>EloFlex</div>
+                    <div>RankdedFlex</div>
                     <div>Runes</div>
                     <div>Ban</div>
                 </div>
@@ -188,7 +294,7 @@ export function LiveGame({ summonerInfo, liveGameInfo }) {
 
                                 <div className='summonerRunes'>
                                     <div>
-                                        <RuneIconUrl runeIconId={participant.perks.perkStyle} />
+                                        <RuneIconUrl runeIconId={participant.perks.perkIds[0]} />
 
                                     </div>
                                     <div>
@@ -196,17 +302,75 @@ export function LiveGame({ summonerInfo, liveGameInfo }) {
 
                                     </div>
                                 </div>
+                                <div className='summonerName'>
+                                    {participant.summonerName}
+                                </div>
+                            </div>
 
+                            <div className='summonerRankedInfo'>
+                                {
+                                     participant.tierSolo === 'Unranked' ?
+                                     (
+                                         <>
+                                             <div className='elo'>
+                                                 Unranked
+                                             </div>
+                                             <div className='rankwinrate'>
+                                                 -
+                                             </div>
+                                         </>) :
+                                     (
+                                         <>
+                                             <div className='elo'>
+                                                 <TierMiniIconUrl tier={participant.tierSolo}/> {capitalizeFirstLetter(participant.tierSolo)} {romanToArabicMap[participant.rankSolo]} {participant.lpSolo} LP
+                                             </div>
+                                             <div className='rankwinrate'>
+                                                 <div className='winRate'>
+                                                     {calculateWinRate({ wins: participant.winsSolo, losses: participant.lossesSolo })}% ({participant.winsSolo + participant.lossesSolo} games)
+                                                 </div>
+                                                 <div>
+                                                     < ProgressBarWinRate win={calculateWinRate({ wins: participant.winsSolo, losses: participant.lossesSolo })} />
+                                                 </div>
+
+                                             </div>
+                                         </>)
+
+
+                                }
                             </div>
-                            <div className='summonerName'>
-                                {participant.summonerName}
+
+                            <div className='summonerRankedInfo'>
+                                {
+                                    participant.tierFlex === 'Unranked' ?
+                                        (
+                                            <>
+                                                <div className='elo'>
+                                                    Unranked
+                                                </div>
+                                                <div className='rankwinrate'>
+                                                    -
+                                                </div>
+                                            </>) :
+                                        (
+                                            <>
+                                                <div className='elo'>
+                                                    <TierMiniIconUrl tier={participant.tierFlex}/> {capitalizeFirstLetter(participant.tierFlex)} {romanToArabicMap[participant.rankFlex]} {participant.lpFlex} LP
+                                                </div>
+                                                <div className='rankwinrate'>
+                                                    <div className='winRate'>
+                                                        {calculateWinRate({ wins: participant.winsFlex, losses: participant.lossesFlex })}% ({participant.winsFlex + participant.lossesFlex} games)
+                                                    </div>
+                                                    <div>
+                                                        < ProgressBarWinRate win={calculateWinRate({ wins: participant.winsFlex, losses: participant.lossesFlex })} />
+                                                    </div>
+
+                                                </div>
+                                            </>)
+
+
+                                }
                             </div>
-                            <div className='elo'>
-                                summonerElo
-                            </div>
-                            <div className='rankwinrate'>
-                                summonerrankwinrate
-                            </div>
+
                             <div className='runes'>
                                 <button onClick={() => toggleRunes(participant.puuid)}>
                                     Runes ▼
@@ -216,9 +380,9 @@ export function LiveGame({ summonerInfo, liveGameInfo }) {
                                 {team2Bans.length > 0 && (
                                     <GetChampionImg championId={team2Bans.shift().championId} />
                                 )}
+
                             </div>
                         </div>
-
 
                         {activeRunesIndexes.includes(participant.puuid) &&
                             <div className='runesDisplay'>

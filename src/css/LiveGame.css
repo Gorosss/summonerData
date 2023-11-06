@@ -1,16 +1,30 @@
+.liveGame {
+    width: 95%;
+    max-width: 1100px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
 .liveGameInfo {
     background-color: #2c274f;
     border-radius: 4px;
+    width: 100%;
 }
 
 .gameType {
-    padding-top: 4px;
-    padding-bottom: 4px;
+    text-align: left;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 17px;
+    white-space: nowrap;
 }
 
 .liveGameInfo .row-header{
     display: grid;
-    grid-template-columns: 43% 9% 28% 7% 18%;
+    grid-template-columns: 25% 14% 14% 14% 15%  7% 15%;
     padding: 18px 12px 8px;
     color: #cddcfe;
     font-size: 12px;
@@ -53,19 +67,31 @@
     margin: 2px;
 }
 
+
+
+.info {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 17px;
+    white-space: nowrap;
+}
+
 .liveParticipant .info{
     padding: 10px;
     display: grid;
     list-style: none;
     gap: 10px;
     width: 100%;
-    grid-template-columns: repeat(4, minmax(80px, 1fr)) 15% 8%  !important;
+    grid-template-columns: 25% 28% 28% 10% 10%  !important;
 
-    justify-items: center;
     align-items: center;
     justify-content: center;
 
   
+}
+
+.liveParticipant .info .summoner{
+    padding-left: 10%;
 }
 
 .liveParticipant.team1 {
@@ -84,6 +110,26 @@
     color: #ff4e50;
 }
 
-.gameType {
-    text-align: left
+
+
+.winRate {
+    margin-bottom: 2px;
+}
+
+.summonerRankedInfo {
+    display: flex;
+}
+
+
+.summonerRankedInfo {
+    padding: 10px;
+    display: grid;
+    list-style: none;
+    gap: 10px;
+    width: 100%;
+    grid-template-columns: 50% 50%  !important;
+
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
 }

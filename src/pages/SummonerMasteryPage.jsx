@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react'
 
 
 
-import { summonerNameApi } from '../api/apiCalls.jsx'
+import { summonerNameApi, getSummonerChamMasteryPoints } from '../api/apiCalls.jsx'
 
 
 import { Header } from '../components/Header.jsx'
@@ -35,12 +35,18 @@ export function StatsProfile() {
 
 export function SummonerMasteryPage() {
   const { reg, summonerName } = useParams();
-  const [summonerInfo, setSummoner] = useState(); // Initialize the state with null or an initial value
+  const [summonerInfo, setSummoner] = useState(); 
+  const [summonerMasteryInfo, setSummonerMasteryInfo] = useState(); 
+  const [loading, setLoading] = useState(true);
+
 
   const getSummonerInfo = async () => {
     try {
       const sumApiInfo = await summonerNameApi({ reg, summonerName }); // Make sure to call your API function
       setSummoner(sumApiInfo);
+      const lastMatches = await getSummonerChamMasteryPoints({ reg, summonerId: sumApiInfo.puuid })
+      setSummonerMasteryInfo(lastMatches)
+      setLoading(false)
     } catch (e) {
       // Handle errors here
     } finally {
@@ -69,7 +75,11 @@ export function SummonerMasteryPage() {
             </div>
             <SummonerNavbar />
             <div className="row masteryChampList">
-              <MasteryChampionList masteryChampionList={MasteryPoints}/>
+            {loading ? (
+                <div>Cargando...</div>
+              ) : (
+                <MasteryChampionList masteryChampionList={summonerMasteryInfo}/>
+                )}
             </div>
 
 

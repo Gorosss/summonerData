@@ -8,6 +8,9 @@
 }
 
 .masteryChampList {
+    width: 95%;
+    max-width: 1100px;
+    
     padding-top: 10px;
     padding-bottom: 10px;
     margin-bottom: 50px;
@@ -22,5 +25,9 @@
     background-color: #2c274f; /* Estilo del fondo */
     color: #dbdbdb; /* Color del texto */
     font-family: 'Roboto', sans-serif; /* Fuente Roboto */
-    font-size: 12px; /* Tamaño de fuente */
+    font-size: 14px; /* Tamaño de fuente */
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 17px;
+    white-space: nowrap;
   }

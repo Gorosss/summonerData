@@ -17,12 +17,7 @@ import { SummonerNavbar } from '../components/SummonerNavbar.jsx'
 import { RankedsProfileStats } from '../components/RankedsProfileStats.jsx'
 
 
-
-import MatchTest from '../jsons/matchTest.json'
-import MatchTest2 from '../jsons/matchTest2.json'
-import MatchTest3 from '../jsons/matchTestTocho.json'
-import MatchTest4 from '../jsons/matchTestTocho2.json'
-
+import MatchTestTocho from '../jsons/matchTestTocho2.json'
 
 
 
@@ -39,21 +34,25 @@ export function StatsProfile() {
 
 export function ProfilePage() {
   const { reg, summonerName } = useParams();
-  const [summonerInfo, setSummoner] = useState(); // Initialize the state with null or an initial value
-  const [matches, setMatches] = useState(MatchTest4); // Initialize the state with null or an initial value
+  const [summonerInfo, setSummoner] = useState(); 
+  const [matches, setMatches] = useState(); 
+  const [loading, setLoading] = useState(true);
 
   const getSummonerInfo = async () => {
     try {
       const sumApiInfo = await summonerNameApi({ reg, summonerName }); // Make sure to call your API function
       setSummoner(sumApiInfo);
-      const summonerPuuid = summonerInfo.puuid
-      const lastMatches = await getLastMatches({ summonerPuuid })
+      // const summonerPuuid = summonerInfo.puuid
+      
+      console.log(sumApiInfo)
+      const lastMatches = await getLastMatches({ summonerPuuid: sumApiInfo.puuid  })
+      
+      // console.log(lastMatches)
       setMatches(lastMatches)
+      setLoading(false)
     } catch (e) {
-      // Handle errors here
-    } finally {
-      // You should set the loading state here if you have a 'setLoading' function
-    }
+      console.log("error ",e)
+    } 
   };
 
   // Call the function to fetch the summoner info
@@ -67,9 +66,7 @@ export function ProfilePage() {
     <>
       <Header />
       
-      {
-
-        (summonerInfo === undefined) ? <h1>Cagando</h1> :
+      {loading ?  <h1>Cagando</h1> :
 
           <>
             <div className="row headProfile">

@@ -16,18 +16,25 @@ export function RankedsProfileStats({ reg, summonerId }) {
     const [winratePercentColorFlex, setWinratePercentColorFlex] = useState('#ffffff'); // Initialize the state with null or an initial value
     const [winratePercentSolo, setWinratePercentSolo] = useState(); // Initialize the state with null or an initial value
     const [winratePercentFlex, setWinratePercentFlex] = useState(); // Initialize the state with null or an initial value
+    const [loading, setLoading] = useState(true);
 
     const getSummonerStatsFun = async () => {
         try {
             const summonerStats = await getSummonerStats({ reg, summonerId });
-            setSummonerSolo(summonerStats.find(queue => (queue.queueType === "RANKED_SOLO_5x5")));
-            setSummonerFlex(summonerStats.find(queue => (queue.queueType === "RANKED_FLEX_SR")));
-            setWinratePercentSolo(((summonerSolo.wins / (summonerSolo.wins + summonerSolo.losses)) * 100).toFixed(1))
+
+            const summonerSoloTemp = await summonerStats.find(queue => (queue.queueType === "RANKED_SOLO_5x5"))
+            const summonerFlexTemp = await summonerStats.find(queue => (queue.queueType === "RANKED_FLEX_SR"))
+            
+            setSummonerSolo(summonerSoloTemp);
+            setSummonerFlex(summonerFlexTemp);
+            setWinratePercentSolo(((summonerSoloTemp.wins / (summonerSoloTemp.wins + summonerSoloTemp.losses)) * 100).toFixed(1))
             setWinRateColorSolo()
-            setWinratePercentFlex(((summonerFlex.wins / (summonerFlex.wins + summonerFlex.losses)) * 100).toFixed(1))
+            setWinratePercentFlex(((summonerFlexTemp.wins / (summonerFlexTemp.wins + summonerFlexTemp.losses)) * 100).toFixed(1))
             setWinRateColorFlex()
+            setLoading(false)
+
         } catch (e) {
-            // Handle errors here
+            console.log("error ", e)
         } finally {
             // You should set the loading state here if you have a 'setLoading' function
         }
@@ -37,6 +44,15 @@ export function RankedsProfileStats({ reg, summonerId }) {
     useEffect(() => {
         getSummonerStatsFun();
     }, []);
+
+
+    useEffect(() => {
+        setWinRateColorSolo();
+    }, [winratePercentSolo]);
+
+    useEffect(() => {
+        setWinRateColorFlex();
+    }, [winratePercentFlex])
 
 
     function capitalizeFirstLetter(str) {
@@ -50,6 +66,7 @@ export function RankedsProfileStats({ reg, summonerId }) {
         IV: 4
     }
     const setWinRateColorSolo = () => {
+
         if (winratePercentSolo < 40) {
             setWinratePercentColorSolo('#ff4655')
         }
@@ -75,7 +92,7 @@ export function RankedsProfileStats({ reg, summonerId }) {
     return (
         <>
             {
-                summonerSolo === undefined ? <></> : (
+                 loading ? <></> : (
                     <div className='soloQueue'>
                         <div className='tierIcon'>
                             <TierIconUrl tier={summonerSolo.tier} />

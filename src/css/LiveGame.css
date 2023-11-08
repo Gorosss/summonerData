@@ -69,6 +69,7 @@
 
 
 
+
 .info {
     font-size: 15px;
     font-weight: 500;
@@ -102,6 +103,10 @@
     background-color: #2f1f38;
 } 
 
+.progress.DMG {
+    background-color: #3273fa
+}
+
 .row-header.team1 > div:first-child {
     color: #3273fa;
 }
@@ -110,6 +115,13 @@
     color: #ff4e50;
 }
 
+.game.loss .row-header.team1 > div:first-child {
+    color: #ff4e50;
+}
+
+.game.loss .row-header.team2 > div:first-child {
+    color: #3273fa;
+}
 
 
 .winRate {

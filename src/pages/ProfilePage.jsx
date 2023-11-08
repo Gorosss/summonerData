@@ -23,19 +23,13 @@ import MatchTestTocho from '../jsons/matchTestTocho2.json'
 
 
 
-export function HistoryProfile() {
-
-}
-
-export function StatsProfile() {
-
-}
 
 
 export function ProfilePage() {
   const { reg, summonerName } = useParams();
   const [summonerInfo, setSummoner] = useState(); 
   const [matches, setMatches] = useState(); 
+  const [matchesCount, setMatchesCount] = useState(10); 
   const [loading, setLoading] = useState(true);
 
   const getSummonerInfo = async () => {
@@ -45,11 +39,32 @@ export function ProfilePage() {
       // const summonerPuuid = summonerInfo.puuid
       
       console.log(sumApiInfo)
-      const lastMatches = await getLastMatches({ summonerPuuid: sumApiInfo.puuid  })
+      const lastMatches = await getLastMatches({ summonerPuuid: sumApiInfo.puuid , numMatches: matchesCount})
       
       // console.log(lastMatches)
       setMatches(lastMatches)
+      
+      setMatchesCount(matchesCount+10)
+
       setLoading(false)
+    } catch (e) {
+      console.log("error ",e)
+    } 
+  };
+
+  const handleAddMoreMatches = async () => {
+    try {
+      const lastMatches = await getLastMatches({ summonerPuuid: summonerInfo.puuid , numMatches: matchesCount})
+      
+      // console.log(lastMatches)
+    
+      setMatches([...matches, ...lastMatches]);
+
+
+
+      setMatchesCount(matchesCount+10)
+
+
     } catch (e) {
       console.log("error ",e)
     } 
@@ -88,7 +103,7 @@ export function ProfilePage() {
 
                 }
                 <div>
-                  <button>Show More</button>
+                  <button onClick={handleAddMoreMatches} className="showMoreButton">Show More</button>
                 </div>
               </div>
 

@@ -129,9 +129,9 @@ export function TierMiniIconUrl({ tier }) {
 
 }
 
-export const getLastMatches = async ({ summonerPuuid }) => {
+export const getLastMatches = async ({ summonerPuuid, numMatches }) => {
     try {
-        const res = await fetch(`https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/${summonerPuuid}/ids?start=0&count=10&api_key=${API_KEY}`)
+        const res = await fetch(`https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/${summonerPuuid}/ids?start=${numMatches-10}&count=${numMatches}&api_key=${API_KEY}`)
         const lastMatchesIdList = await res.json()
         const lastMatchesList = []
 

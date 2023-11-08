@@ -21,16 +21,16 @@ const columns = [
     width: "10%",
   },
   {
-    name: 'Champ', 
+    name: 'Champion', 
     selector: row => getChampionName(row.championId),
     sortable: true,
     width: "15%",
   },
   {
-    name: 'Mastery', 
+    name: 'Level', 
     selector: row => row.championLevel,
     sortable: true,
-    width: "8%",
+    width: "9%",
   },
   {
     name: 'Points', 
@@ -39,19 +39,19 @@ const columns = [
     width: "15%",
   },
   {
-    name: 'Chest granted', 
+    name: 'Granted', 
     selector: row => getChestImg(row.chestGranted),
     sortable: false,
     width: "10%",
   },
   {
-    name: 'Progression to next level', 
+    name: 'Progression', 
     selector: row => getMasteryProgression(row.championLevel, row.tokensEarned, row.championPointsSinceLastLevel, row.championPointsUntilNextLevel),
     sortable: false,
     width: "20%",
   },
   {
-    name: 'Points need for next level', 
+    name: 'Points for next level', 
     selector: row => getPointsUntilNextLvl(row.championLevel, row.championPointsUntilNextLevel),
     sortable: false,
     width: "20%",

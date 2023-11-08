@@ -7,6 +7,14 @@
     width: 100%;
 }
 
+.rdt_TableHeadRow {
+    justify-content: center;
+}
+
+.rdt_TableHeadRow div{
+    justify-content: center;
+}
+
 .masteryChampList {
     width: 95%;
     max-width: 1100px;
@@ -14,6 +22,8 @@
     padding-top: 10px;
     padding-bottom: 10px;
     margin-bottom: 50px;
+
+    
 }
 
 .liveGameInfo {

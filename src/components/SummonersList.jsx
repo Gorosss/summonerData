@@ -2,7 +2,7 @@ import React from "react";
 
 import { ChampIconUrl } from '../api/apiCalls.jsx'
 
-import {Top, Jungle, Mid, Bot, Sup} from '../assets/svgs.jsx'
+import { Top, Jungle, Mid, Bot, Sup } from '../assets/svgs.jsx'
 
 
 
@@ -18,15 +18,18 @@ export function SummonersList({ matchParticipants }) {
                     return (
                         <div className={`summ${participant.teamId}${participant.teamPosition}`}>
                             {participant.teamId === 100 ? (
-                                <>  
-                                       <p className="teamId100">{participant.summonerName}</p> 
-                                    
+                                <>
+                                    <a className="teamId100" href={"http://localhost:5173/profile/EUW1/" + participant.summonerName} target="_blank" rel="noopener noreferrer">
+                                        {participant.summonerName}
+                                    </a>
                                     <ChampIconUrl champIconName={participant.championName} />
                                 </>
                             ) : (
                                 <>
                                     <ChampIconUrl champIconName={participant.championName} />
-                                    <p className="teamId200">{participant.summonerName}</p> 
+                                    <a className="teamId200" href={"http://localhost:5173/profile/EUW1/" + participant.summonerName} target="_blank" rel="noopener noreferrer">
+                                        {participant.summonerName}
+                                    </a>
                                 </>
                             )}
                         </div>
@@ -36,19 +39,60 @@ export function SummonersList({ matchParticipants }) {
 
             }
             <div className="topIcon">
-                <Top/>
+                <Top />
             </div>
             <div className="jungleIcon">
-                <Jungle/>
+                <Jungle />
             </div>
             <div className="midIcon">
-                <Mid/>
+                <Mid />
             </div>
             <div className="botIcon">
-                <Bot/>
+                <Bot />
             </div>
             <div className="supIcon">
-                <Sup/>
+                <Sup />
+            </div>
+        </>
+    )
+}
+
+export function SummonersListSpecial({ matchParticipants }) {
+
+
+
+    return (
+        <>
+            {
+                matchParticipants.map((participant, index) => {
+                    return (
+                        <div className={`summ${participant.teamId}${index}`}>
+                            {participant.teamId === 100 ? (
+                                <>
+
+                                    <a className="teamId100" href={"http://localhost:5173/profile/EUW1/" + participant.summonerName} target="_blank" rel="noopener noreferrer">
+                                        {participant.summonerName}
+                                    </a>
+
+                                    <ChampIconUrl champIconName={participant.championName} />
+                                </>
+                            ) : (
+                                <>
+                                    <ChampIconUrl champIconName={participant.championName} />
+
+                                    <a className="teamId200" href={"http://localhost:5173/profile/EUW1/" + participant.summonerName} target="_blank" rel="noopener noreferrer">
+                                        {participant.summonerName}
+                                    </a>
+                                </>
+                            )}
+                        </div>
+                    )
+                })
+
+
+            }
+            <div className="vsIcon">
+                VS
             </div>
         </>
     )

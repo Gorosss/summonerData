@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { ChampIconUrl, ItemsIconsUrl, SummonerSpellIconUrl, RuneIconUrl } from '../api/apiCalls.jsx'
 
 import { ProgressBarDMG } from '../components/ProgressBar.jsx';
-import { SummonersList } from '../components/SummonersList.jsx';
+import { SummonersList, SummonersListSpecial } from '../components/SummonersList.jsx';
 
 import { CalculateElapsedTime } from '../components/CalculateElapsedTime.jsx';
 
@@ -17,7 +17,9 @@ import { CalculateElapsedTime } from '../components/CalculateElapsedTime.jsx';
 export function GameInfo({ summonerInfo, matchInfo }) {
 
 
-
+    const handleSummonerName = (summonerName) => {
+        window.open('http://localhost:5173/profile/EUW1/' + summonerName, '_blank', 'noopener,noreferrer');
+    }
 
     const [showGameInfo, setShowGameInfo] = useState(false);
 
@@ -85,7 +87,7 @@ export function GameInfo({ summonerInfo, matchInfo }) {
                     <div className='matchInfo'>
                         <div className='col gameData'>
                             <div className='queueType'>
-                                {queueIdMap[match.queueId]}
+                                {queueIdMap[match.queueId] || "Special Mode"}
                             </div>
                             <div className='elapsedTime'>
                                 <CalculateElapsedTime gameEndTimestamp={match.gameEndTimestamp} />
@@ -127,11 +129,11 @@ export function GameInfo({ summonerInfo, matchInfo }) {
                             </div>
                             <div className='summonerRunes'>
                                 <div>
-                                <RuneIconUrl runeIconId={summonerMatch.perks.styles[0].selections[0].perk} />
+                                    <RuneIconUrl runeIconId={summonerMatch.perks.styles[0].selections[0].perk} />
 
                                 </div>
                                 <div>
-                                <RuneIconUrl runeIconId={summonerMatch.perks.styles[1].style} />
+                                    <RuneIconUrl runeIconId={summonerMatch.perks.styles[1].style} />
 
                                 </div>
                             </div>
@@ -146,15 +148,15 @@ export function GameInfo({ summonerInfo, matchInfo }) {
                                 <span className='assists'>{summonerMatch.assists}</span>
                             </div>
                             <div className='kdaSummary'>
-                            {
-                                         summonerMatch.deaths == 0 ?  
-                                        
+                                {
+                                    summonerMatch.deaths == 0 ?
+
                                         ((summonerMatch.kills + summonerMatch.assists).toFixed(1))
 
                                         : ((((summonerMatch.kills + summonerMatch.assists) / summonerMatch.deaths).toFixed(1)))
-                                    
-                                    
-                                    } KDA
+
+
+                                } KDA
                             </div>
                             <div className='cs'>
                                 {summonerMatch.totalMinionsKilled + summonerMatch.neutralMinionsKilled} CS ({((summonerMatch.totalMinionsKilled + summonerMatch.neutralMinionsKilled) / (match.gameDuration / 60)).toFixed(1)})
@@ -176,15 +178,29 @@ export function GameInfo({ summonerInfo, matchInfo }) {
 
                         </div>
 
-                        <div className='col summonersList'>
-                            <SummonersList matchParticipants={match.participants} />
-                        </div>
 
+                        {
+                            ((match.queueId == 400) || (match.queueId == 420) || (match.queueId == 440)) ?
+                                (
+                                    <div className='col summonersList'>
+                                        <SummonersList matchParticipants={match.participants} />
+                                    </div>
+                                ) :
+                                (
+                                    <div className='col summonersListSpecial'>
+                                        <SummonersListSpecial matchParticipants={match.participants} />
+                                    </div>
+                                )
+                        }
 
                     </div>
+
                     <div className='showMatch'>
                         <button onClick={toggleGameInfo}>{showGameInfo ? "⇑" : "⇓"}</button>
                     </div>
+
+
+
                 </div>
 
                 {showGameInfo &&
@@ -212,7 +228,7 @@ export function GameInfo({ summonerInfo, matchInfo }) {
                             </div>
                         </div>
                         {team1.map(participant => (
-                            <div key={participant.id} className={`participant team1 ${participant.puuid === summonerMatch.puuid ? "summoner" : ""}`}>
+                            <div key={participant.puuid} className={`participant team1 ${participant.puuid === summonerMatch.puuid ? "summoner" : ""}`}>
 
 
 
@@ -232,17 +248,22 @@ export function GameInfo({ summonerInfo, matchInfo }) {
 
                                     <div className='summonerRunes'>
                                         <div>
-                                        <RuneIconUrl runeIconId={participant.perks.styles[0].selections[0].perk} />
+                                            <RuneIconUrl runeIconId={participant.perks.styles[0].selections[0].perk} />
 
                                         </div>
                                         <div>
-                                        <RuneIconUrl runeIconId={participant.perks.styles[1].style} />
+                                            <RuneIconUrl runeIconId={participant.perks.styles[1].style} />
 
                                         </div>
                                     </div>
 
                                 </div>
-                                <div className='summonerName'>{participant.summonerName} </div>
+                                <div className='summonerName'>
+                                    <a href={"http://localhost:5173/profile/EUW1/"+participant.summonerName} target="_blank" rel="noopener noreferrer">
+                                    {participant.summonerName}
+                                    </a>
+                                    
+                                </div>
 
 
                                 <div className='kda'>
@@ -250,18 +271,18 @@ export function GameInfo({ summonerInfo, matchInfo }) {
                                     /
                                     <span className='deaths'>{participant.deaths}</span>
                                     /
-                                    <span className='assists'>{participant.assists}</span> 
+                                    <span className='assists'>{participant.assists}</span>
                                     <div>
                                         {
-                                         participant.deaths == 0 ?  
-                                        
-                                        ((participant.kills + participant.assists).toFixed(1))
+                                            participant.deaths == 0 ?
 
-                                        : ((((participant.kills + participant.assists) / participant.deaths).toFixed(1)))
-                                    
-                                    
-                                    } KDA
-                                        </div>                              
+                                                ((participant.kills + participant.assists).toFixed(1))
+
+                                                : ((((participant.kills + participant.assists) / participant.deaths).toFixed(1)))
+
+
+                                        } KDA
+                                    </div>
                                 </div>
                                 <div className='dmg'>
                                     {participant.totalDamageDealtToChampions}
@@ -269,7 +290,7 @@ export function GameInfo({ summonerInfo, matchInfo }) {
 
                                 </div>
                                 <div className='goldEarned'>
-                                    {(participant.goldEarned/1000).toFixed(1)}K
+                                    {(participant.goldEarned / 1000).toFixed(1)}K
                                 </div>
                                 <div className='cs'>CS {participant.totalMinionsKilled + participant.neutralMinionsKilled}</div>
 
@@ -309,7 +330,7 @@ export function GameInfo({ summonerInfo, matchInfo }) {
                             </div>
                         </div>
                         {team2.map(participant => (
-                            <div key={participant.id} className='participant team2'>
+                            <div key={participant.puuid} className='participant team2'>
 
 
 
@@ -329,34 +350,38 @@ export function GameInfo({ summonerInfo, matchInfo }) {
 
                                     <div className='summonerRunes'>
                                         <div>
-                                        <RuneIconUrl runeIconId={participant.perks.styles[0].selections[0].perk} />
+                                            <RuneIconUrl runeIconId={participant.perks.styles[0].selections[0].perk} />
 
                                         </div>
                                         <div>
-                                        <RuneIconUrl runeIconId={participant.perks.styles[1].style} />
-                                            
+                                            <RuneIconUrl runeIconId={participant.perks.styles[1].style} />
+
                                         </div>
                                     </div>
 
                                 </div>
-                                <div className='summonerName'>{participant.summonerName} </div>
+                                <div className='summonerName'>
+                                <a href={"http://localhost:5173/profile/EUW1/"+participant.summonerName} target="_blank" rel="noopener noreferrer">
+                                    {participant.summonerName}
+                                    </a>
+                                     </div>
 
                                 <div className='kda'>
                                     <span className='kills'>{participant.kills}</span>
                                     /
                                     <span className='deaths'>{participant.deaths}</span>
                                     /
-                                    <span className='assists'>{participant.assists}</span> 
+                                    <span className='assists'>{participant.assists}</span>
                                     <div>
-                                    {
-                                         participant.deaths == 0 ?  
-                                        
-                                        ((participant.kills + participant.assists).toFixed(1))
+                                        {
+                                            participant.deaths == 0 ?
 
-                                        : ((((participant.kills + participant.assists) / participant.deaths).toFixed(1)))
-                                    
-                                    
-                                    } KDA                                        </div>                              
+                                                ((participant.kills + participant.assists).toFixed(1))
+
+                                                : ((((participant.kills + participant.assists) / participant.deaths).toFixed(1)))
+
+
+                                        } KDA                                        </div>
                                 </div>
                                 <div className='dmg'>
                                     {participant.totalDamageDealtToChampions}
@@ -364,14 +389,14 @@ export function GameInfo({ summonerInfo, matchInfo }) {
 
                                 </div>
                                 <div className='goldEarned'>
-                                    {(participant.goldEarned/1000).toFixed(1)}K
+                                    {(participant.goldEarned / 1000).toFixed(1)}K
                                 </div>
                                 <div className='cs'>CS {participant.totalMinionsKilled + participant.neutralMinionsKilled}</div>
 
                                 <div className='items'>
                                     {
                                         Array.from({ length: 7 }, (_, index) => (
-                                            <ItemsIconsUrl itemIconId={participant[`item${index}`]} item={[`item${index}`]}/>
+                                            <ItemsIconsUrl itemIconId={participant[`item${index}`]} item={[`item${index}`]} />
                                         ))
                                     }
 

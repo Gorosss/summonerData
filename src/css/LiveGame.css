@@ -95,6 +95,8 @@
     padding-left: 10%;
 }
 
+
+
 .liveParticipant.team1 {
     background-color: #212653;
 } 
@@ -102,6 +104,14 @@
 .liveParticipant.team2 {
     background-color: #2f1f38;
 } 
+
+.team1.liveSummoner{
+    background-color: #2c387e;
+}
+
+.team2.liveSummoner{
+    background-color: #4d283e;
+}
 
 .progress.DMG {
     background-color: #3273fa

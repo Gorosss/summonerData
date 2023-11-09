@@ -30,20 +30,20 @@
 
 
 
-.game.loss .showMatch button:hover{
+.game.loss .showMatch button:hover {
     background-color: #38223a;
 }
 
-.game.win .matchInfo:hover + .showMatch button {
+.game.win .matchInfo:hover+.showMatch button {
     background-color: #24295c;
 }
 
-.game.loss .matchInfo:hover + .showMatch button {
+.game.loss .matchInfo:hover+.showMatch button {
     background-color: #38223a;
 }
 
 
-.game.loss .showMatch button:hover{
+.game.loss .showMatch button:hover {
     background-color: #38223a;
 }
 
@@ -76,7 +76,7 @@
 
 
 
-.game.loss .showMatch button{
+.game.loss .showMatch button {
     background-color: #4d283e;
 }
 
@@ -113,11 +113,11 @@
     margin-right: 3px;
 }
 
-.gameResult.win{
+.gameResult.win {
     color: #3273fa;
 }
 
-.gameResult.loss{
+.gameResult.loss {
     color: #ff4e50;
 }
 
@@ -128,7 +128,7 @@
 }
 
 .summonerChamp,
-.summonerSpells{
+.summonerSpells {
     margin-left: 5px;
     margin-right: 5px;
 }
@@ -214,7 +214,7 @@
     color: #53263e;
 }
 
-.kda span{
+.kda span {
     font-size: 14px;
     font-weight: 700;
     line-height: 17px;
@@ -223,7 +223,7 @@
     margin-right: 3px;
 }
 
-.kills{
+.kills {
     color: #3CBC8D;
 }
 
@@ -297,7 +297,7 @@
     background-color: rgb(32, 45, 55);
     color: rgb(255, 255, 255);
     border-color: #f2bf43;
-    
+
 }
 
 
@@ -316,19 +316,23 @@
 
 }
 
-.summonerSpells div img ,.summonerItems div img, .summonerItems div{
-    border-radius:4px
+.summonerSpells div img,
+.summonerItems div img,
+.summonerItems div {
+    border-radius: 4px
 }
 
-.game.win .summonerItems .noItem, .game.win .summonerRunes{
+.game.win .summonerItems .noItem,
+.game.win .summonerRunes {
     background-color: #223b80;
 }
 
-.game.loss .summonerItems .noItem, .game.loss .summonerRunes {
+.game.loss .summonerItems .noItem,
+.game.loss .summonerRunes {
     background-color: #53263e;
 }
 
- .game.win .team2 .summonerRunes {
+.game.win .team2 .summonerRunes {
     background-color: #53263e;
 }
 
@@ -337,7 +341,16 @@
 }
 
 
-
+.vsIcon {
+    letter-spacing: 0.025rem;
+    color: #B3B4D0;
+    text-align: center;
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+    margin-left: 4px;
+    font-weight: bold;
+}
 
 .summonersList {
     font-size: 14px;
@@ -359,7 +372,28 @@
 
 }
 
-.summonersList div{
+.summonersListSpecial {
+    font-size: 14px;
+
+    display: grid;
+    gap: 1px;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    grid-template-areas:
+        "item-0 vsIcon item-5"
+        "item-1 vsIcon item-6"
+        "item-2 vsIcon item-7"
+        "item-3 vsIcon item-8"
+        "item-4 vsIcon item-9";
+    width: 13rem;
+
+
+}
+
+.summonersList div,
+.summonersListSpecial div {
     display: flex;
     -webkit-box-pack: center;
     justify-content: center;
@@ -369,7 +403,9 @@
     min-height: 24px;
 }
 
-.summonersList p {
+.summonersList a,
+.summonersListSpecial a {
+    all: unset;
     width: 40px;
     font-size: 10px;
 
@@ -379,6 +415,18 @@
     text-overflow: ellipsis;
     margin: 0;
 }
+
+.summonerName a:hover,
+.summonersList a:hover,
+.summonersListSpecial a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.summonerName a {
+    all: unset;
+}
+
 
 .teamId100 {
     text-align: right;
@@ -400,11 +448,13 @@
 }
 
 
-.summonersList div {
+.summonersList div,
+.summonersListSpecial div {
     display: flex;
 }
 
-.summonersList img {
+.summonersList img,
+.summonersListSpecial img {
     object-fit: cover;
     border-radius: 50%;
     border-style: solid;
@@ -413,7 +463,7 @@
 
 }
 
-.gameInfo .row-header{
+.gameInfo .row-header {
     display: grid;
     grid-template-columns: 32% 7% 22% 5% 17% 12%;
     padding: 18px 12px 8px;
@@ -423,6 +473,7 @@
     text-align: center;
     background-color: #1a1836;
 }
+
 
 .participant {
     padding: 10px;
@@ -436,22 +487,22 @@
     align-items: center;
     justify-content: center;
 
-  
+
 }
 
-.game.win .participant.team1{
+.game.win .participant.team1 {
     background-color: #212653;
 }
 
-.game.win .participant.team2{
+.game.win .participant.team2 {
     background-color: #2f1f38;
 }
 
-.game.loss .participant.team1{
+.game.loss .participant.team1 {
     background-color: #2f1f38;
 }
 
-.game.loss .participant.team2{
+.game.loss .participant.team2 {
     background-color: #212653;
 }
 
@@ -488,15 +539,20 @@
 }
 
 
-.gameInfo .row-header{
+.gameInfo .row-header {
     color: #cddcfe;
     font-size: 12px;
     font-weight: 400;
     text-align: center;
 }
 
-.gameInfo .team1 .kda, .gameInfo .team2 .kda{
-    
+
+
+
+
+.gameInfo .team1 .kda,
+.gameInfo .team2 .kda {
+
     color: #cddcfe;
     text-align: center;
     font-family: Inter;
@@ -504,23 +560,24 @@
     font-style: normal;
     font-weight: 500;
     line-height: normal;
- 
+
 }
 
-.team1 .kda span, .team2 .kda span {
+.team1 .kda span,
+.team2 .kda span {
     margin-top: 6px;
     line-height: 13px;
     font-size: 11px;
     color: #cddcfe;
     font-weight: 400;
-} 
+}
 
 
-.game.win .participant.team1.summoner{
+.game.win .participant.team1.summoner {
     background-color: #2c387e;
 }
 
-.game.loss .participant.team1.summoner{
+.game.loss .participant.team1.summoner {
     background-color: #4d283e;
 }
 
@@ -566,6 +623,45 @@
 }
 
 
+.summ1000 {
+    grid-area: item-0;
+}
+
+.summ1001 {
+    grid-area: item-1;
+}
+
+.summ1002 {
+    grid-area: item-2;
+}
+
+.summ1003 {
+    grid-area: item-3;
+}
+
+.summ1004 {
+    grid-area: item-4;
+}
+
+.summ2005 {
+    grid-area: item-5;
+}
+
+.summ2006 {
+    grid-area: item-6;
+}
+
+.summ2007 {
+    grid-area: item-7;
+}
+
+.summ2008 {
+    grid-area: item-8;
+}
+
+.summ2009 {
+    grid-area: item-9;
+}
 
 .summ100TOP {
     grid-area: item-0;
@@ -607,6 +703,9 @@
     grid-area: item-9;
 }
 
+.vsIcon {
+    grid-area: vsIcon;
+}
 
 .topIcon {
     grid-area: toplane;

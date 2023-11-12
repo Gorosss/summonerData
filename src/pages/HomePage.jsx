@@ -1,6 +1,8 @@
 import {RegionSelect} from '../components/RegionSelect'
 import React, { useState  } from 'react';
 import { useNavigate  } from 'react-router-dom';
+import { Header } from '../components/Header.jsx'
+
 
 
 
@@ -48,14 +50,7 @@ export function HomePage() {
     return (
         <div className='page'>
 
-            <header>
-                <div className='nav'>
-                    <div className='logo'>
-                        SummonerData.gg
-                    </div>
-
-                </div>
-            </header>
+            <Header />
             <main>
                 <div className='search'>
                     <form className='form'  onSubmit={handleFormSubmit}>

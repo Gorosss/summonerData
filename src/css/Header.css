@@ -3,6 +3,7 @@ header {
     width: 100%;
     position: fixed;
     top: 0; 
+    left: 0;
     z-index: 100;
 }
 
@@ -13,3 +14,11 @@ header {
   padding: 5px 20px; 
 }
 
+.logo {
+  margin-left: 10px;
+}
+
+
+.logo:hover {
+  cursor: pointer;
+}

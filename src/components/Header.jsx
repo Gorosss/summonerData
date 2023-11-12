@@ -1,10 +1,20 @@
 import '../css/Header.css'
+import React from 'react';
+
 
 export function Header() {
+
+
+    const handleHome = () => {
+
+        window.location.href = 'http://localhost:5173';
+      };
+
+
     return (
         <header>
             <div className='nav'>
-                <div className='logo'>
+                <div onClick={handleHome} className='logo'>
                     SummonerData.gg
                 </div>
                 <div className='searchSummoner'>

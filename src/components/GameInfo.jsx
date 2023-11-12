@@ -61,6 +61,7 @@ export function GameInfo({ summonerInfo, matchInfo }) {
 
 
 
+  
     const calculateKP = (killAssist, teamId) => {
         if (teamId == 100) {
             return ((killAssist / blueTeamKillsSum) * 100).toFixed(1)

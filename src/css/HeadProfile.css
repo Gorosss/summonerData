@@ -40,6 +40,18 @@
     height: 100%;
     object-fit: cover;
     border-radius: 50%; 
-
+    border-style: solid;
+    border-width: 2px;
+    border-color: #dbdbdb;
 }
 
+.summonerLevel {
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 4px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #dbdbdb;
+    background-color: rgb(32, 45, 55);
+    border-radius: 20px;
+}

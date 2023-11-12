@@ -318,16 +318,22 @@
 
 .summonerSpells div img,
 .summonerItems div img,
+.items div img,
+.items div,
 .summonerItems div {
     border-radius: 4px
 }
 
 .game.win .summonerItems .noItem,
+.game.win .team1 .items .noItem,
+.game.loss .team2 .items .noItem,
 .game.win .summonerRunes {
     background-color: #223b80;
 }
 
 .game.loss .summonerItems .noItem,
+.game.loss .items .noItem,
+.game.win .team2 .items .noItem,
 .game.loss .summonerRunes {
     background-color: #53263e;
 }

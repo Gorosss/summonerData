@@ -1,4 +1,6 @@
 footer {
+    display: flex;
+    justify-content: center;
     background-color: black;
     color: white;
     padding: 20px;
@@ -8,3 +10,9 @@ footer {
     left: 0;
     width: 100%;
   };
+
+  a {
+    color: inherit; /* Hereda el color del texto del elemento padre */
+    text-decoration: none; /* Elimina el subrayado */
+  }
+  

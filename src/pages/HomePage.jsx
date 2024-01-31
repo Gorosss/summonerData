@@ -3,6 +3,7 @@ import React, { useState  } from 'react';
 import { useNavigate  } from 'react-router-dom';
 import { Header } from '../components/Header.jsx'
 import { Footer } from '../components/Footer.jsx'
+import '../css/HomePage.css'
 
 
 
@@ -50,9 +51,10 @@ export function HomePage() {
 
     return (
         <div className='page'>
-
+          
             <Header />
             <main>
+                <div className='backgroundImage'></div>
                 <div className='search'>
                     <form className='form'  onSubmit={handleFormSubmit}>
                     <input

@@ -4,6 +4,7 @@ import '../css/ProfilePage.css'
 
 import { useState, useEffect } from 'react'
 
+import { Footer } from '../components/Footer.jsx'
 
 
 import { getSummonerInfoByPuuid, summonerNameApi, getSummonerSpectatorGameInfo, getSummonerStats } from '../api/apiCalls.jsx'
@@ -118,12 +119,12 @@ export function LiveGamePage() {
             </div>
 
 
-
+            
 
           </>
 
       }
-
+      <Footer />
     </>
   );
 }

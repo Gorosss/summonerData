@@ -2,10 +2,13 @@ import './App.css'
 import { Routes } from './components/Routes.jsx'
 
 
+
 function App() {
 
   return (
-    <Routes />
+    <>
+      <Routes />
+    </>
   )
 }
 

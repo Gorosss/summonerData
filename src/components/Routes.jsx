@@ -4,6 +4,7 @@ import { ProfilePage } from '../pages/ProfilePage.jsx'
 import { SummonerMasteryPage } from '../pages/SummonerMasteryPage.jsx'
 import { LiveGamePage } from '../pages/LiveGamePage.jsx'
 
+
 export function Routes () {
     return (
         <Router>

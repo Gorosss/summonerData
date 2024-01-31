@@ -2,6 +2,7 @@ import {RegionSelect} from '../components/RegionSelect'
 import React, { useState  } from 'react';
 import { useNavigate  } from 'react-router-dom';
 import { Header } from '../components/Header.jsx'
+import { Footer } from '../components/Footer.jsx'
 
 
 
@@ -71,6 +72,7 @@ export function HomePage() {
                 </div>
 
             </main>
+            <Footer />
         </div>
     )
 }

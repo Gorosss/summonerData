@@ -4,6 +4,7 @@ import '../css/ProfilePage.css'
 
 import { useState, useEffect } from 'react'
 
+import { Footer } from '../components/Footer.jsx'
 
 
 import { summonerNameApi, getSummonerChamMasteryPoints } from '../api/apiCalls.jsx'
@@ -88,7 +89,7 @@ export function SummonerMasteryPage() {
           </>
 
       }
-
+       <Footer />
     </>
   );
 }

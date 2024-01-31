@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Api calls and api key ignored
+
+src/api/apiCalls.jsx

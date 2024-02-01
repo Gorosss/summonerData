@@ -19,7 +19,7 @@
     --border: #526980;
     --code: #ffbe85;
     --animation-duration: 0.1s;
-    --button-base: #0c151c;
+    --button-base: #565895;
     --button-hover: #040a0f;
     --scrollbar-thumb: var(--button-hover);
     --scrollbar-thumb-hover: rgb(0, 0, 0);
@@ -54,11 +54,10 @@
     color: #1d1d1d;
     color: var(--form-text);
     background-color: #efefef;
-    background-color: var(--background);
+    background-color: #3b4a6b;
     font-family: inherit;
     font-size: inherit;
     margin-right: 6px;
-    margin-bottom: 6px;
     padding: 10px;
     border: none;
     border-radius: 6px;
@@ -82,7 +81,9 @@
   
 
   
- 
+  input::placeholder {
+    color: var(--form-text);
+  }
   
   button {
     background-color: #d0cfcf;

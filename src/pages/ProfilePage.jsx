@@ -81,7 +81,7 @@ export function ProfilePage() {
   return (
     <>
       <Header />
-      
+      <main>
       {loading ?  <h1>Cagando</h1> :
 
           <>
@@ -116,6 +116,7 @@ export function ProfilePage() {
           </>
 
       }
+      </main>
         <Footer />
     </>
   );

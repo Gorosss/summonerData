@@ -65,7 +65,7 @@ export function SummonerMasteryPage() {
   return (
     <>
       <Header />
-      
+      <main>
       {
 
         (summonerInfo === undefined) ? <h1>Cagando</h1> :
@@ -89,6 +89,7 @@ export function SummonerMasteryPage() {
           </>
 
       }
+      </main>
        <Footer />
     </>
   );

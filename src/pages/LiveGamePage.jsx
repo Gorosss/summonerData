@@ -101,7 +101,7 @@ export function LiveGamePage() {
   return (
     <>
       <Header />
-
+      <main>
       {
 
         (summonerInfo === undefined) ? <h1>Cagando</h1> :
@@ -124,6 +124,7 @@ export function LiveGamePage() {
           </>
 
       }
+      </main>
       <Footer />
     </>
   );

@@ -5,11 +5,9 @@ footer {
     color: white;
     padding: 20px;
     text-align: center;
-    position: fixed;
-    bottom: 0;
-    left: 0;
     width: 100%;
   };
+  
 
   a {
     color: inherit; /* Hereda el color del texto del elemento padre */

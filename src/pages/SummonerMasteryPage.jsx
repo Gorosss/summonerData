@@ -68,7 +68,7 @@ export function SummonerMasteryPage() {
       <main>
       {
 
-        (summonerInfo === undefined) ? <h1>Cagando</h1> :
+        (summonerInfo === undefined) ? <h1>Loading...</h1> :
 
           <>
             <div className="row headProfile">

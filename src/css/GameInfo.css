@@ -471,7 +471,7 @@
 
 .gameInfo .row-header {
     display: grid;
-    grid-template-columns: 32% 7% 22% 5% 17% 12%;
+    grid-template-columns: 30% 7% 19% 4% 18% 12% 10%;
     padding: 18px 12px 8px;
     color: #cddcfe;
     font-size: 12px;
@@ -487,7 +487,7 @@
     list-style: none;
     gap: 10px;
     width: 100%;
-    grid-template-columns: repeat(4, minmax(80px, 1fr)) 7% 13% 17% !important;
+    grid-template-columns: repeat(4, minmax(75px, 1fr)) 7% 13% 17% 5% !important;
 
     justify-items: center;
     align-items: center;
@@ -731,4 +731,36 @@
 
 .supIcon {
     grid-area: support;
+}
+
+
+.runes button{
+    background: #2c367a;
+}
+
+.game.loss .team1 .runes button{
+    background: #4d283e;
+}
+
+.game.win .team2 .runes button{
+    background: #4d283e;
+}
+
+
+.gameInfo .runesDisplay{
+    display: grid;
+    grid-template-columns: 15% 15% 15%;
+    color: #cddcfe;
+    font-size: 12px;
+    font-weight: 400;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background-color: #1a1836;
+}
+
+.gameInfo .runesDisplay{
+    display: flex;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }

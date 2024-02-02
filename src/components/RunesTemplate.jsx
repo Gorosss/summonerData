@@ -8,13 +8,13 @@ export function RunesStats({ runesIds }) {
     return (
         <>
             <div>
-                <div className={runesIds[0] == 5008 ? "" : "perkInactive"}>
+                <div className={runesIds[2] == 5008 ? "" : "perkInactive"}>
                     <RuneIconUrl runeIconId={5008} />
                 </div>
-                <div className={runesIds[0] == 5005 ? "" : "perkInactive"}>
+                <div className={runesIds[2] == 5005 ? "" : "perkInactive"}>
                     <RuneIconUrl runeIconId={5005} />
                 </div>
-                <div className={runesIds[0] == 5007 ? "" : "perkInactive"}>
+                <div className={runesIds[2] == 5007 ? "" : "perkInactive"}>
                     <RuneIconUrl runeIconId={5007} />
                 </div>
 
@@ -23,22 +23,22 @@ export function RunesStats({ runesIds }) {
                 <div className={runesIds[1] == 5008 ? "" : "perkInactive"}>
                     <RuneIconUrl runeIconId={5008} />
                 </div>
-                <div className={runesIds[1] == 5002 ? "" : "perkInactive"}>
-                    <RuneIconUrl runeIconId={5002} />
+                <div className={runesIds[1] == 5010 ? "" : "perkInactive"}>
+                    <RuneIconUrl runeIconId={5010} />
                 </div>
-                <div className={runesIds[1] == 5003 ? "" : "perkInactive"}>
-                    <RuneIconUrl runeIconId={5003} />
+                <div className={runesIds[1] == 5001 ? "" : "perkInactive"}>
+                    <RuneIconUrl runeIconId={5001} />
                 </div>
             </div>
             <div>
-                <div className={runesIds[2] == 5001 ? "" : "perkInactive"}>
+                <div className={runesIds[0] == 5011 ? "" : "perkInactive"}>
+                    <RuneIconUrl runeIconId={5011} />
+                </div>
+                <div className={runesIds[0] == 5013 ? "" : "perkInactive"}>
+                    <RuneIconUrl runeIconId={5013} />
+                </div>
+                <div className={runesIds[0] == 5001 ? "" : "perkInactive"}>
                     <RuneIconUrl runeIconId={5001} />
-                </div>
-                <div className={runesIds[2] == 5002 ? "" : "perkInactive"}>
-                    <RuneIconUrl runeIconId={5002} />
-                </div>
-                <div className={runesIds[2] == 5003 ? "" : "perkInactive"}>
-                    <RuneIconUrl runeIconId={5003} />
                 </div>
             </div>
         </>

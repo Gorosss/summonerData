@@ -82,7 +82,7 @@ export function ProfilePage() {
     <>
       <Header />
       <main>
-      {loading ?  <h1>Cagando</h1> :
+      {loading ?  <h1>Loading...</h1> :
 
           <>
             <div className="row headProfile">

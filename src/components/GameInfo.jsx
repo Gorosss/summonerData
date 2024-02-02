@@ -11,10 +11,16 @@ import { SummonersList, SummonersListSpecial } from '../components/SummonersList
 
 import { CalculateElapsedTime } from '../components/CalculateElapsedTime.jsx';
 
+import { GetPrimaryRunes, GetSecondaryRunes, RunesStats } from '../components/RunesTemplate.jsx'
+
+
 
 
 
 export function GameInfo({ summonerInfo, matchInfo }) {
+
+
+    const [activeRunesIndexes, setActiveRunesIndexes] = useState([]);
 
 
     const handleSummonerName = (summonerName) => {
@@ -25,6 +31,14 @@ export function GameInfo({ summonerInfo, matchInfo }) {
 
     const toggleGameInfo = () => {
         setShowGameInfo(!showGameInfo);
+    };
+
+    const toggleRunes = (puuid) => {
+        if (activeRunesIndexes.includes(puuid)) {
+            setActiveRunesIndexes(activeRunesIndexes.filter((i) => i !== puuid));
+        } else {
+            setActiveRunesIndexes([...activeRunesIndexes, puuid]);
+        }
     };
 
     const queueIdMap = {
@@ -61,7 +75,7 @@ export function GameInfo({ summonerInfo, matchInfo }) {
 
 
 
-  
+
     const calculateKP = (killAssist, teamId) => {
         if (teamId == 100) {
             return ((killAssist / blueTeamKillsSum) * 100).toFixed(1)
@@ -229,85 +243,113 @@ export function GameInfo({ summonerInfo, matchInfo }) {
                             </div>
                         </div>
                         {team1.map(participant => (
-                            <div key={participant.puuid} className={`participant team1 ${participant.puuid === summonerMatch.puuid ? "summoner" : ""}`}>
+                            <>
+                                <div key={participant.puuid} className={`participant team1 ${participant.puuid === summonerMatch.puuid ? "summoner" : ""}`}>
 
 
 
-                                <div className='summoner'>
+                                    <div className='summoner'>
 
-                                    <div className='champ'>
-                                        <ChampIconUrl champIconName={participant.championName} />
+                                        <div className='champ'>
+                                            <ChampIconUrl champIconName={participant.championName} />
 
-                                        <div className='champLevel'>
-                                            {participant.champLevel}
+                                            <div className='champLevel'>
+                                                {participant.champLevel}
+                                            </div>
                                         </div>
+                                        <div className='summonerSpells'>
+                                            <SummonerSpellIconUrl summonerSpeelIconId={participant.summoner1Id} />
+                                            <SummonerSpellIconUrl summonerSpeelIconId={participant.summoner2Id} />
+                                        </div>
+
+                                        <div className='summonerRunes'>
+                                            <div>
+                                                <RuneIconUrl runeIconId={participant.perks.styles[0].selections[0].perk} />
+
+                                            </div>
+                                            <div>
+                                                <RuneIconUrl runeIconId={participant.perks.styles[1].style} />
+
+                                            </div>
+                                        </div>
+
                                     </div>
-                                    <div className='summonerSpells'>
-                                        <SummonerSpellIconUrl summonerSpeelIconId={participant.summoner1Id} />
-                                        <SummonerSpellIconUrl summonerSpeelIconId={participant.summoner2Id} />
+                                    <div className='summonerName'>
+                                        <a href={"http://localhost:5173/profile/EUW1/" + participant.summonerName} target="_blank" rel="noopener noreferrer">
+                                            {participant.summonerName}
+                                        </a>
+
                                     </div>
 
-                                    <div className='summonerRunes'>
+
+                                    <div className='kda'>
+                                        <span className='kills'>{participant.kills}</span>
+                                        /
+                                        <span className='deaths'>{participant.deaths}</span>
+                                        /
+                                        <span className='assists'>{participant.assists}</span>
                                         <div>
-                                            <RuneIconUrl runeIconId={participant.perks.styles[0].selections[0].perk} />
+                                            {
+                                                participant.deaths == 0 ?
 
-                                        </div>
-                                        <div>
-                                            <RuneIconUrl runeIconId={participant.perks.styles[1].style} />
+                                                    ((participant.kills + participant.assists).toFixed(1))
 
+                                                    : ((((participant.kills + participant.assists) / participant.deaths).toFixed(1)))
+
+
+                                            } KDA
                                         </div>
                                     </div>
+                                    <div className='dmg'>
+                                        {participant.totalDamageDealtToChampions}
+                                        <ProgressBarDMG dmg={participant.totalDamageDealtToChampions} maxDmg={maxDMG} />
 
-                                </div>
-                                <div className='summonerName'>
-                                    <a href={"http://localhost:5173/profile/EUW1/"+participant.summonerName} target="_blank" rel="noopener noreferrer">
-                                    {participant.summonerName}
-                                    </a>
-                                    
-                                </div>
+                                    </div>
+                                    <div className='goldEarned'>
+                                        {(participant.goldEarned / 1000).toFixed(1)}K
+                                    </div>
+                                    <div className='cs'>CS {participant.totalMinionsKilled + participant.neutralMinionsKilled}</div>
 
-
-                                <div className='kda'>
-                                    <span className='kills'>{participant.kills}</span>
-                                    /
-                                    <span className='deaths'>{participant.deaths}</span>
-                                    /
-                                    <span className='assists'>{participant.assists}</span>
-                                    <div>
+                                    <div className='items'>
                                         {
-                                            participant.deaths == 0 ?
+                                            Array.from({ length: 7 }, (_, index) => (
+                                                <ItemsIconsUrl itemIconId={participant[`item${index}`]} item={[`item${index}`]} />
+                                            ))
+                                        }
 
-                                                ((participant.kills + participant.assists).toFixed(1))
-
-                                                : ((((participant.kills + participant.assists) / participant.deaths).toFixed(1)))
-
-
-                                        } KDA
                                     </div>
-                                </div>
-                                <div className='dmg'>
-                                    {participant.totalDamageDealtToChampions}
-                                    <ProgressBarDMG dmg={participant.totalDamageDealtToChampions} maxDmg={maxDMG} />
+                                    <div className='runes'>
+                                        <button onClick={() => toggleRunes(participant.puuid)}>
+                                            ▼
+                                        </button>
+                                    </div>
 
-                                </div>
-                                <div className='goldEarned'>
-                                    {(participant.goldEarned / 1000).toFixed(1)}K
-                                </div>
-                                <div className='cs'>CS {participant.totalMinionsKilled + participant.neutralMinionsKilled}</div>
 
-                                <div className='items'>
-                                    {
-                                        Array.from({ length: 7 }, (_, index) => (
-                                            <ItemsIconsUrl itemIconId={participant[`item${index}`]} item={[`item${index}`]} />
-                                        ))
-                                    }
+
 
                                 </div>
 
+                                {
 
+                                    activeRunesIndexes.includes(participant.puuid) &&
+                                    <div className='runesDisplay'>
+                                        <div className='primary'>
 
+                                            <GetPrimaryRunes perkStyle={participant.perks.styles[0].style} runeId={participant.perks.styles[0].selections[0].perk} />
+                                            <GetSecondaryRunes perkSubStyle={participant.perks.styles[0].style} runesIds={[participant.perks.styles[0].selections[1].perk, participant.perks.styles[0].selections[2].perk, participant.perks.styles[0].selections[3].perk]} />
+                                        </div>
+                                        <div className="divider"></div>
+                                        <div className='secondary'>
+                                            <GetSecondaryRunes perkSubStyle={participant.perks.styles[1].style} runesIds={[participant.perks.styles[1].selections[0].perk, participant.perks.styles[1].selections[1].perk]} />
+                                        </div>
+                                        <div className="divider"></div>
+                                        <div className='runeStats'>
+                                            <RunesStats runesIds={[participant.perks.statPerks.defense, participant.perks.statPerks.flex, participant.perks.statPerks.offense]} />
+                                        </div>
+                                    </div>
+                                }
+                            </>
 
-                            </div>
                         ))}
                         <div class="row-header team2">
                             <div>
@@ -331,88 +373,112 @@ export function GameInfo({ summonerInfo, matchInfo }) {
                             </div>
                         </div>
                         {team2.map(participant => (
-                            <div key={participant.puuid} className='participant team2'>
+                            <>
+                                <div key={participant.puuid} className='participant team2'>
 
 
 
-                                <div className='summoner'>
+                                    <div className='summoner'>
 
-                                    <div className='champ'>
-                                        <ChampIconUrl champIconName={participant.championName} />
+                                        <div className='champ'>
+                                            <ChampIconUrl champIconName={participant.championName} />
 
-                                        <div className='champLevel'>
-                                            {participant.champLevel}
+                                            <div className='champLevel'>
+                                                {participant.champLevel}
+                                            </div>
                                         </div>
+                                        <div className='summonerSpells'>
+                                            <SummonerSpellIconUrl summonerSpeelIconId={participant.summoner1Id} />
+                                            <SummonerSpellIconUrl summonerSpeelIconId={participant.summoner2Id} />
+                                        </div>
+
+                                        <div className='summonerRunes'>
+                                            <div>
+                                                <RuneIconUrl runeIconId={participant.perks.styles[0].selections[0].perk} />
+
+                                            </div>
+                                            <div>
+                                                <RuneIconUrl runeIconId={participant.perks.styles[1].style} />
+
+                                            </div>
+                                        </div>
+
                                     </div>
-                                    <div className='summonerSpells'>
-                                        <SummonerSpellIconUrl summonerSpeelIconId={participant.summoner1Id} />
-                                        <SummonerSpellIconUrl summonerSpeelIconId={participant.summoner2Id} />
+                                    <div className='summonerName'>
+                                        <a href={"http://localhost:5173/profile/EUW1/" + participant.summonerName} target="_blank" rel="noopener noreferrer">
+                                            {participant.summonerName}
+                                        </a>
                                     </div>
 
-                                    <div className='summonerRunes'>
+                                    <div className='kda'>
+                                        <span className='kills'>{participant.kills}</span>
+                                        /
+                                        <span className='deaths'>{participant.deaths}</span>
+                                        /
+                                        <span className='assists'>{participant.assists}</span>
                                         <div>
-                                            <RuneIconUrl runeIconId={participant.perks.styles[0].selections[0].perk} />
+                                            {
+                                                participant.deaths == 0 ?
 
-                                        </div>
-                                        <div>
-                                            <RuneIconUrl runeIconId={participant.perks.styles[1].style} />
+                                                    ((participant.kills + participant.assists).toFixed(1))
 
-                                        </div>
+                                                    : ((((participant.kills + participant.assists) / participant.deaths).toFixed(1)))
+
+
+                                            } KDA                                        </div>
                                     </div>
+                                    <div className='dmg'>
+                                        {participant.totalDamageDealtToChampions}
+                                        <ProgressBarDMG dmg={participant.totalDamageDealtToChampions} maxDmg={maxDMG} />
 
-                                </div>
-                                <div className='summonerName'>
-                                <a href={"http://localhost:5173/profile/EUW1/"+participant.summonerName} target="_blank" rel="noopener noreferrer">
-                                    {participant.summonerName}
-                                    </a>
-                                     </div>
+                                    </div>
+                                    <div className='goldEarned'>
+                                        {(participant.goldEarned / 1000).toFixed(1)}K
+                                    </div>
+                                    <div className='cs'>CS {participant.totalMinionsKilled + participant.neutralMinionsKilled}</div>
 
-                                <div className='kda'>
-                                    <span className='kills'>{participant.kills}</span>
-                                    /
-                                    <span className='deaths'>{participant.deaths}</span>
-                                    /
-                                    <span className='assists'>{participant.assists}</span>
-                                    <div>
+                                    <div className='items'>
                                         {
-                                            participant.deaths == 0 ?
+                                            Array.from({ length: 7 }, (_, index) => (
+                                                <ItemsIconsUrl itemIconId={participant[`item${index}`]} item={[`item${index}`]} />
+                                            ))
+                                        }
 
-                                                ((participant.kills + participant.assists).toFixed(1))
+                                    </div>
+                                    <div className='runes'>
+                                        <button onClick={() => toggleRunes(participant.puuid)}>
+                                            ▼
+                                        </button>
+                                    </div>
 
-                                                : ((((participant.kills + participant.assists) / participant.deaths).toFixed(1)))
 
-
-                                        } KDA                                        </div>
-                                </div>
-                                <div className='dmg'>
-                                    {participant.totalDamageDealtToChampions}
-                                    <ProgressBarDMG dmg={participant.totalDamageDealtToChampions} maxDmg={maxDMG} />
-
-                                </div>
-                                <div className='goldEarned'>
-                                    {(participant.goldEarned / 1000).toFixed(1)}K
-                                </div>
-                                <div className='cs'>CS {participant.totalMinionsKilled + participant.neutralMinionsKilled}</div>
-
-                                <div className='items'>
-                                    {
-                                        Array.from({ length: 7 }, (_, index) => (
-                                            <ItemsIconsUrl itemIconId={participant[`item${index}`]} item={[`item${index}`]} />
-                                        ))
-                                    }
 
                                 </div>
 
+                                {activeRunesIndexes.includes(participant.puuid) &&
+                                <div className='runesDisplay'>
+                                    <div className='primary'>
 
-
-
-                            </div>
+                                        <GetPrimaryRunes perkStyle={participant.perks.styles[0].style} runeId={participant.perks.styles[0].selections[0].perk} />
+                                        <GetSecondaryRunes perkSubStyle={participant.perks.styles[0].style} runesIds={[participant.perks.styles[0].selections[1].perk, participant.perks.styles[0].selections[2].perk, participant.perks.styles[0].selections[3].perk]} />
+                                    </div>
+                                    <div className="divider"></div>
+                                    <div className='secondary'>
+                                        <GetSecondaryRunes perkSubStyle={participant.perks.styles[1].style} runesIds={[participant.perks.styles[1].selections[0].perk, participant.perks.styles[1].selections[1].perk]} />
+                                    </div>
+                                    <div className="divider"></div>
+                                    <div className='runeStats'>
+                                        <RunesStats runesIds={[participant.perks.statPerks.defense, participant.perks.statPerks.flex, participant.perks.statPerks.offense]} />
+                                    </div>
+                                </div>
+}
+                            </>
                         ))}
                     </div>)
                 }
 
 
-            </div>
+            </div >
 
 
         </>

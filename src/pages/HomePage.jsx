@@ -53,7 +53,7 @@ export function HomePage() {
         <div className='page'>
           
             <Header />
-            <main>
+            <main className="homePageMain">
                 <div className='backgroundImage'></div>
                 <div className='search'>
                     <form className='form'  onSubmit={handleFormSubmit}>

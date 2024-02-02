@@ -1,3 +1,7 @@
+# SummonerData.gg
+
+## Información
+
 SummonerData.gg es una aplicación diseñada para proporcionar a los jugadores de League of Legends información valiosa y en tiempo real sobre los jugadores, permitiéndoles acceder fácilmente a datos clave relacionados con su historial de partidas, maestrías con los campeones y estadísticas en vivo.
 
 Características Principales:
@@ -20,7 +24,8 @@ Real-Time Tracking: For those who want to track their progress in real-time, Sum
 
 
 
-Todo List:
+## Todo List:
 - Poner bien las urls
 - Msg que el jugador no esta en partida
 - Mensaje de usuario no encontrado
+- Mejorar el readme

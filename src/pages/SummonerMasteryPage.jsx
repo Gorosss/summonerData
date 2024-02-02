@@ -77,7 +77,7 @@ export function SummonerMasteryPage() {
             <SummonerNavbar />
             <div className="row masteryChampList">
             {loading ? (
-                <div>Cargando...</div>
+                <div>Loading...</div>
               ) : (
                 <MasteryChampionList masteryChampionList={summonerMasteryInfo}/>
                 )}

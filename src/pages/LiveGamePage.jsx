@@ -113,7 +113,7 @@ export function LiveGamePage() {
             <SummonerNavbar />
             <div className="row liveGame">
               {loading ? (
-                <div>Cargando...</div>
+                <div>Loading...</div>
               ) : (
                 <LiveGame summonerInfo={summonerInfo} liveGameInfo={summonerSpectatorInfo} />)}
             </div>

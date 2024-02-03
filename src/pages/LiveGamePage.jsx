@@ -28,6 +28,7 @@ export function LiveGamePage() {
   const { reg, summonerName } = useParams();
   const [summonerInfo, setSummoner] = useState(); // Initialize the state with null or an initial value
   const [summonerSpectatorInfo, setSummonerSpectatorInfo] = useState(); // Initialize the state with null or an initial value
+  const [summonerNotInGame, setSummonerNotInGame] = useState(false);
   const [loading, setLoading] = useState(true);
 
 
@@ -80,12 +81,15 @@ export function LiveGamePage() {
       console.log(updateParticipantsInfo)
 
       sumApiSpectatorInfo.participants = updateParticipantsInfo
+
       setSummonerSpectatorInfo(sumApiSpectatorInfo)
 
 
       setLoading(false);
     } catch (e) {
-      // Handle errors here
+      console.log('Summoner not found')
+      setSummonerNotInGame(true);
+      setLoading(false);
     } finally {
       // You should set the loading state here if you have a 'setLoading' function
     }
@@ -115,7 +119,17 @@ export function LiveGamePage() {
               {loading ? (
                 <div>Loading...</div>
               ) : (
-                <LiveGame summonerInfo={summonerInfo} liveGameInfo={summonerSpectatorInfo} />)}
+
+                summonerNotInGame ? (
+                  <div className="summonerNotInGameDiv">
+                    <span>{summonerName} is not in an active game</span>
+                    <p> Feel free to retry later in case the summoner is currently in a match.</p>
+                   
+                  </div>
+                ):(
+                <LiveGame summonerInfo={summonerInfo} liveGameInfo={summonerSpectatorInfo} />)
+                
+                )}
             </div>
 
 

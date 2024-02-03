@@ -25,6 +25,5 @@ Real-Time Tracking: For those who want to track their progress in real-time, Sum
 
 
 ## Todo List:
-- Msg que el jugador no esta en partida
 - Mensaje de usuario no encontrado
 - Mejorar el readme

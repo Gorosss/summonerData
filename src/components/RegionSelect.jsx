@@ -1,20 +1,20 @@
 import React from 'react';
 
-export function RegionSelect({}) {
+export function RegionSelect({name, value, onChange}) {
 
   return (
-    <select>
-        <option value="EUW1">EUW</option>
-        <option value="BR1">BR</option>
-        <option value="EUN1">EUN</option>
-        <option value="JP1">JP</option>
-        <option value="KR">KR</option>
-        <option value="LA1">LAN</option>
-        <option value="LA2">LAS</option>
-        <option value="NA1">NA</option>
-        <option value="OC1">OC</option>
-        <option value="RU">RU</option>
-        <option value="TR1">TR</option>
+    <select name={name} value={value} onChange={onChange}>
+        <option value="euw">EUW</option>
+        <option value="br">BR</option>
+        <option value="eun">EUN</option>
+        <option value="jp">JP</option>
+        <option value="kr">KR</option>
+        <option value="lan">LAN</option>
+        <option value="las">LAS</option>
+        <option value="na">NA</option>
+        <option value="oc">OC</option>
+        <option value="ru">RU</option>
+        <option value="tr">TR</option>
     </select>
   );
   

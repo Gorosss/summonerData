@@ -8,11 +8,13 @@ import '../css/HomePage.css'
 
 
 
+
+
 export function HomePage() {
 
     const [formData, setFormData] = useState({
         summonerName: '',
-        region: 'EUW1', // Set a default region if needed
+        region: 'euw', // Set a default region if needed
       });
     
       const navigate = useNavigate ();
@@ -29,6 +31,8 @@ export function HomePage() {
 
 
         console.log(summonerName, region);
+
+
 
     
         const url = `/profile/${region}/${summonerName}`;

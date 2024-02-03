@@ -1,5 +1,7 @@
 # SummonerData.gg
 
+[![es](https://img.shields.io/badge/lang-es-yellow.svg)](https://github.com/Gorosss/summonerData/blob/master/README-ES.md)
+
 ## Information
 
 SummonerData.gg is an application designed to provide League of Legends players with valuable and real-time information, allowing them easy access to key data related to their match history, champion masteries, and live statistics.

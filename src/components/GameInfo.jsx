@@ -17,15 +17,10 @@ import { GetPrimaryRunes, GetSecondaryRunes, RunesStats } from '../components/Ru
 
 
 
-export function GameInfo({ summonerInfo, matchInfo }) {
+export function GameInfo({ summonerInfo, matchInfo, region }) {
 
 
     const [activeRunesIndexes, setActiveRunesIndexes] = useState([]);
-
-
-    const handleSummonerName = (summonerName) => {
-        window.open('http://localhost:5173/profile/EUW1/' + summonerName, '_blank', 'noopener,noreferrer');
-    }
 
     const [showGameInfo, setShowGameInfo] = useState(false);
 
@@ -198,12 +193,12 @@ export function GameInfo({ summonerInfo, matchInfo }) {
                             ((match.queueId == 400) || (match.queueId == 420) || (match.queueId == 440)) ?
                                 (
                                     <div className='col summonersList'>
-                                        <SummonersList matchParticipants={match.participants} />
+                                        <SummonersList matchParticipants={match.participants} region={region}/>
                                     </div>
                                 ) :
                                 (
                                     <div className='col summonersListSpecial'>
-                                        <SummonersListSpecial matchParticipants={match.participants} />
+                                        <SummonersListSpecial matchParticipants={match.participants} region={region}/>
                                     </div>
                                 )
                         }
@@ -275,7 +270,7 @@ export function GameInfo({ summonerInfo, matchInfo }) {
 
                                     </div>
                                     <div className='summonerName'>
-                                        <a href={"http://localhost:5173/profile/EUW1/" + participant.summonerName} target="_blank" rel="noopener noreferrer">
+                                        <a href={"http://localhost:5173/profile/"+region+"/" + participant.summonerName} target="_blank" rel="noopener noreferrer">
                                             {participant.summonerName}
                                         </a>
 
@@ -405,7 +400,7 @@ export function GameInfo({ summonerInfo, matchInfo }) {
 
                                     </div>
                                     <div className='summonerName'>
-                                        <a href={"http://localhost:5173/profile/EUW1/" + participant.summonerName} target="_blank" rel="noopener noreferrer">
+                                        <a href={"http://localhost:5173/profile/"+region+"/" + participant.summonerName} target="_blank" rel="noopener noreferrer">
                                             {participant.summonerName}
                                         </a>
                                     </div>

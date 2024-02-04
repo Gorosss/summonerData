@@ -105,7 +105,7 @@ export function ProfilePage() {
                 {
                   matches.map(match => {
                     return (
-                      <GameInfo summonerInfo={summonerInfo} matchInfo={match} key={match.metadata.matchId} />
+                      <GameInfo summonerInfo={summonerInfo} matchInfo={match} region={reg} key={match.metadata.matchId} />
                     )
                   })
 

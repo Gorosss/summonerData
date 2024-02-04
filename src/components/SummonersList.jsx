@@ -7,7 +7,7 @@ import { Top, Jungle, Mid, Bot, Sup } from '../assets/svgs.jsx'
 
 
 
-export function SummonersList({ matchParticipants }) {
+export function SummonersList({ matchParticipants , region}) {
 
 
 
@@ -19,7 +19,7 @@ export function SummonersList({ matchParticipants }) {
                         <div className={`summ${participant.teamId}${participant.teamPosition}`}>
                             {participant.teamId === 100 ? (
                                 <>
-                                    <a className="teamId100" href={"http://localhost:5173/profile/EUW1/" + participant.summonerName} target="_blank" rel="noopener noreferrer">
+                                    <a className="teamId100" href={"http://localhost:5173/profile/"+region+"/" + participant.summonerName} target="_blank" rel="noopener noreferrer">
                                         {participant.summonerName}
                                     </a>
                                     <ChampIconUrl champIconName={participant.championName} />
@@ -27,7 +27,7 @@ export function SummonersList({ matchParticipants }) {
                             ) : (
                                 <>
                                     <ChampIconUrl champIconName={participant.championName} />
-                                    <a className="teamId200" href={"http://localhost:5173/profile/EUW1/" + participant.summonerName} target="_blank" rel="noopener noreferrer">
+                                    <a className="teamId200" href={"http://localhost:5173/profile/"+region+"/" + participant.summonerName} target="_blank" rel="noopener noreferrer">
                                         {participant.summonerName}
                                     </a>
                                 </>
@@ -57,7 +57,7 @@ export function SummonersList({ matchParticipants }) {
     )
 }
 
-export function SummonersListSpecial({ matchParticipants }) {
+export function SummonersListSpecial({ matchParticipants , region}) {
 
 
 
@@ -70,7 +70,7 @@ export function SummonersListSpecial({ matchParticipants }) {
                             {participant.teamId === 100 ? (
                                 <>
 
-                                    <a className="teamId100" href={"http://localhost:5173/profile/EUW1/" + participant.summonerName} target="_blank" rel="noopener noreferrer">
+                                    <a className="teamId100" href={"http://localhost:5173/profile/"+region+"/" + participant.summonerName} target="_blank" rel="noopener noreferrer">
                                         {participant.summonerName}
                                     </a>
 
@@ -80,7 +80,7 @@ export function SummonersListSpecial({ matchParticipants }) {
                                 <>
                                     <ChampIconUrl champIconName={participant.championName} />
 
-                                    <a className="teamId200" href={"http://localhost:5173/profile/EUW1/" + participant.summonerName} target="_blank" rel="noopener noreferrer">
+                                    <a className="teamId200" href={"http://localhost:5173/profile/"+region+"/" + participant.summonerName} target="_blank" rel="noopener noreferrer">
                                         {participant.summonerName}
                                     </a>
                                 </>

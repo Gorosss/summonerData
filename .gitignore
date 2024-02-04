@@ -25,4 +25,4 @@ dist-ssr
 
 # Api calls and api key ignored
 
-src/api/apiCalls.jsx
+src/api

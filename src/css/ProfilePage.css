@@ -25,3 +25,33 @@
     color: #FFF;
     
 }
+
+
+.summonerNotFoundDiv {
+    margin-top: 100px;
+    padding: 50px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #2c274f;
+}
+
+.summonerNotFoundDiv span{
+    line-height: 20px;
+    font-weight: bolder;
+    font-size: 20px;
+    color: #FFF;
+    
+}
+
+.summonerNotFoundDiv span span{
+    line-height: 20px;
+    font-weight: bolder;
+    font-size: 20px;
+    color: rgb(60, 101, 214);
+    
+}
+
+.summonerNotFoundDiv p{
+    margin-top: 10px;
+    
+}

@@ -19,4 +19,26 @@ export function regionValue({ region }) {
 
 }
 
+
+
+export function regionName({ region }) {
+
+  const regionValueMap = {
+      euw: "Europe West",
+      br: "Brazil",
+      eun: "Europe Nordic & East",
+      jp: "Japan",
+      kr: "Korea",
+      lan: "LAN",
+      las: "LAS",
+      na: "North America",
+      oc: "Oceania ",
+      ru: "Russia",
+      tr: "Türkiye",
+    };
+    
+  return regionValueMap[region]
+
+}
+
 export default regionValue

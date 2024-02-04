@@ -16,7 +16,7 @@ import { SummonerNavbar } from '../components/SummonerNavbar.jsx'
 import { MasteryChampionList } from '../components/MasteryChampionList.jsx'
 
 
-import MasteryPoints from '../jsons/champMastery.json'
+import {regionName} from "../components/RegionValue";
 
 
 
@@ -38,6 +38,7 @@ export function SummonerMasteryPage() {
   const { reg, summonerName } = useParams();
   const [summonerInfo, setSummoner] = useState(); 
   const [summonerMasteryInfo, setSummonerMasteryInfo] = useState(); 
+  const [summonerNotFound, setSummonerNotFound] = useState(false);
   const [loading, setLoading] = useState(true);
 
 
@@ -49,8 +50,9 @@ export function SummonerMasteryPage() {
       setSummonerMasteryInfo(lastMatches)
       setLoading(false)
     } catch (e) {
-      // Handle errors here
-    } finally {
+      setSummonerNotFound(true);
+      setLoading(false)
+      console.log("summoner not found ",e)    } finally {
       // You should set the loading state here if you have a 'setLoading' function
     }
   };
@@ -68,7 +70,14 @@ export function SummonerMasteryPage() {
       <main>
       {
 
-        (summonerInfo === undefined) ? <h1>Loading...</h1> :
+        (summonerInfo === undefined) ? <h1 style={{marginTop: "100px"}}>Loading...</h1> :
+
+        summonerNotFound ? 
+        <div className="summonerNotFoundDiv">
+            <span>No search result for "<span>{summonerName}</span>" in the {regionName({region: reg})} region</span>
+            <p>Please double-check the game name and region, and try again.</p>
+          </div> 
+        : (
 
           <>
             <div className="row headProfile">
@@ -86,7 +95,7 @@ export function SummonerMasteryPage() {
 
 
 
-          </>
+          </>)
 
       }
       </main>

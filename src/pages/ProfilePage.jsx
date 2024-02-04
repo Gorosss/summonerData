@@ -18,8 +18,7 @@ import { SummonerNavbar } from '../components/SummonerNavbar.jsx'
 import { RankedsProfileStats } from '../components/RankedsProfileStats.jsx'
 
 
-import MatchTestTocho from '../jsons/matchTestTocho2.json'
-
+import {regionName} from "../components/RegionValue";
 
 
 
@@ -31,6 +30,7 @@ export function ProfilePage() {
   const [summonerInfo, setSummoner] = useState(); 
   const [matches, setMatches] = useState(); 
   const [matchesCount, setMatchesCount] = useState(10); 
+  const [summonerNotFound, setSummonerNotFound] = useState(false);
   const [loading, setLoading] = useState(true);
 
   const getSummonerInfo = async () => {
@@ -49,7 +49,9 @@ export function ProfilePage() {
 
       setLoading(false)
     } catch (e) {
-      console.log("error ",e)
+      setSummonerNotFound(true);
+      setLoading(false)
+      console.log("summoner not found ",e)
     } 
   };
 
@@ -82,8 +84,14 @@ export function ProfilePage() {
     <>
       <Header />
       <main>
-      {loading ?  <h1>Loading...</h1> :
+      {loading ?  <h1 style={{marginTop: "100px"}}>Loading...</h1>  :
 
+          (summonerNotFound ? 
+          <div className="summonerNotFoundDiv">
+            <span>No search result for "<span>{summonerName}</span>" in the {regionName({region: reg})} region</span>
+            <p>Please double-check the game name and region, and try again.</p>
+          </div> 
+          :
           <>
             <div className="row headProfile">
               <HeadProfile summonerInfo={summonerInfo} />
@@ -113,7 +121,7 @@ export function ProfilePage() {
 
 
             
-          </>
+          </>)
 
       }
       </main>

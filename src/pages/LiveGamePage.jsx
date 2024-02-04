@@ -18,7 +18,7 @@ import { SummonerNavbar } from '../components/SummonerNavbar.jsx'
 import { LiveGame } from '../components/LiveGame.jsx'
 
 
-import spectator from '../jsons/spectator2.json'
+import {regionName} from "../components/RegionValue";
 
 
 
@@ -29,6 +29,7 @@ export function LiveGamePage() {
   const [summonerInfo, setSummoner] = useState(); // Initialize the state with null or an initial value
   const [summonerSpectatorInfo, setSummonerSpectatorInfo] = useState(); // Initialize the state with null or an initial value
   const [summonerNotInGame, setSummonerNotInGame] = useState(false);
+  const [summonerNotFound, setSummonerNotFound] = useState(false);
   const [loading, setLoading] = useState(true);
 
 
@@ -37,6 +38,13 @@ export function LiveGamePage() {
       const sumApiInfo = await summonerNameApi({ reg, summonerName }); // Make sure to call your API function
       setSummoner(sumApiInfo);
       const sumApiSpectatorInfo = await getSummonerSpectatorGameInfo({ reg, summonerId: sumApiInfo.id }); // Make sure to call your API function
+      console.log(sumApiSpectatorInfo)
+      if (sumApiSpectatorInfo === "Summoner not in game") {
+        setSummonerNotInGame(true);
+        setLoading(false);
+        return
+      }
+
 
       const updateParticipants = async (sumApiSpectatorInfo) => {
         const updatedParticipants = await Promise.all(
@@ -87,8 +95,8 @@ export function LiveGamePage() {
 
       setLoading(false);
     } catch (e) {
-      console.log('Summoner not found')
-      setSummonerNotInGame(true);
+      console.log('Summoner not found', e)
+      setSummonerNotFound(true);
       setLoading(false);
     } finally {
       // You should set the loading state here if you have a 'setLoading' function
@@ -100,7 +108,8 @@ export function LiveGamePage() {
     getSummonerInfo();
   }, []);
 
-  console.log(summonerInfo)
+  console.log(summonerNotFound)
+  console.log(summonerNotInGame)
 
   return (
     <>
@@ -108,8 +117,13 @@ export function LiveGamePage() {
       <main>
       {
 
-        (summonerInfo === undefined) ? <h1>Loading...</h1> :
-
+        (summonerInfo === undefined) ? <h1 style={{marginTop: "100px"}}>Loading...</h1>  :
+        summonerNotFound ? 
+        <div className="summonerNotFoundDiv">
+            <span>No search result for "<span>{summonerName}</span>" in the {regionName({region: reg})} region</span>
+            <p>Please double-check the game name and region, and try again.</p>
+          </div> 
+        : (
           <>
             <div className="row headProfile">
               <HeadProfile summonerInfo={summonerInfo} />
@@ -136,7 +150,7 @@ export function LiveGamePage() {
             
 
           </>
-
+        )
       }
       </main>
       <Footer />

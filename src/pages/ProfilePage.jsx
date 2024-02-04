@@ -40,7 +40,7 @@ export function ProfilePage() {
       // const summonerPuuid = summonerInfo.puuid
       
       console.log(sumApiInfo)
-      const lastMatches = await getLastMatches({ summonerPuuid: sumApiInfo.puuid , numMatches: matchesCount})
+      const lastMatches = await getLastMatches({ summonerPuuid: sumApiInfo.puuid , numMatches: matchesCount , reg: reg})
       
       // console.log(lastMatches)
       setMatches(lastMatches)

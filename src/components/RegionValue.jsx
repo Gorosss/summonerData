@@ -23,7 +23,7 @@ export function regionValue({ region }) {
 
 export function regionName({ region }) {
 
-  const regionValueMap = {
+  const regionNameMap = {
       euw: "Europe West",
       br: "Brazil",
       eun: "Europe Nordic & East",
@@ -37,8 +37,31 @@ export function regionName({ region }) {
       tr: "Türkiye",
     };
     
-  return regionValueMap[region]
+  return regionNameMap[region]
 
 }
+
+export function continentValue({ region }) {
+
+  const continentValueMap = {
+      euw: "europe",
+      br: "americas",
+      eun: "europe",
+      jp: "asia",
+      kr: "asia",
+      lan: "americas",
+      las: "americas",
+      na: "americas",
+      oc: "sea ",
+      ru: "europe",
+      tr: "asia",
+    };
+    
+  return continentValueMap[region]
+
+}
+
+
+
 
 export default regionValue

@@ -14,7 +14,3 @@ Champion Mastery Information: The application offers a comprehensive analysis of
 
 Real-Time Tracking: For those who want to track their progress in real-time, SummonerData.gg offers live information about the current match. Users can get instant details about the champion they are playing, the state of the match, key statistics, and other relevant data.
 
-
-## Todo List:
-- Mensaje de usuario no encontrado
-- Mejorar el readme

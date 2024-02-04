@@ -14,7 +14,3 @@ Información de Maestrías con Campeones: La aplicación ofrece un análisis exh
 
 Seguimiento en Tiempo Real: Para aquellos que desean seguir su progreso en tiempo real, SummonerData.gg proporciona información en vivo sobre la partida actual. Los usuarios pueden obtener detalles instantáneos sobre el campeón que están jugando, el estado de la partida, estadísticas clave y otros datos relevantes.
 
-
-## Todo List:
-- Mensaje de usuario no encontrado
-- Mejorar el readme

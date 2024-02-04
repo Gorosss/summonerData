@@ -57,7 +57,7 @@ export function ProfilePage() {
 
   const handleAddMoreMatches = async () => {
     try {
-      const lastMatches = await getLastMatches({ summonerPuuid: summonerInfo.puuid , numMatches: matchesCount})
+      const lastMatches = await getLastMatches({ summonerPuuid: summonerInfo.puuid , numMatches: matchesCount , reg: reg})
       
       // console.log(lastMatches)
     

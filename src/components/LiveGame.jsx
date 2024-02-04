@@ -15,7 +15,6 @@ import { summonerNameApi, getSummonerStats, TierMiniIconUrl } from '../api/apiCa
 
 import { ProgressBarWinRate } from '../components/ProgressBar.jsx';
 
-import {regionValue} from "../components/RegionValue";
 
 
 
@@ -163,7 +162,7 @@ export function LiveGame({ summonerInfo, liveGameInfo , region}) {
                                     </div>
                                 </div>
                                 <div className='summonerName'>
-                                    <a href={`${window.location.origin}/profile/`+regionValue(region)+`/` + participant.summonerName} target="_blank" rel="noopener noreferrer">
+                                    <a href={`${window.location.origin}/profile/`+region+`/` + participant.summonerName} target="_blank" rel="noopener noreferrer">
                                         {participant.summonerName}
                                     </a>
                                 </div>
@@ -307,7 +306,7 @@ export function LiveGame({ summonerInfo, liveGameInfo , region}) {
                                     </div>
                                 </div>
                                 <div className='summonerName'>
-                                    <a href={`${window.location.origin}/profile/`+regionValue(region)+`/` + participant.summonerName} target="_blank" rel="noopener noreferrer">
+                                    <a href={`${window.location.origin}/profile/`+region+`/` + participant.summonerName} target="_blank" rel="noopener noreferrer">
                                         {participant.summonerName}
                                     </a>
                                 </div>

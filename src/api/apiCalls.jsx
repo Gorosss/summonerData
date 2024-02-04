@@ -4,8 +4,7 @@ import {continentValue} from "../components/RegionValue";
 
 
 const API_KEY = import.meta.env.VITE_REACT_APP_API_KEY;
-const DATADRAGONURL = 'http://ddragon.leagueoflegends.com/cdn/14.2.1/'
-
+const DATADRAGONURL = import.meta.env.VITE_REACT_APP_DATADRAGON_URL;
 
 export const summonerNameApi = async ({ reg, summonerName }) => {
 

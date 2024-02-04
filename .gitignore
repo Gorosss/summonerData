@@ -23,6 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 
-# Api calls and api key ignored
+# Api keys
 
-src/api
+.env

@@ -16,7 +16,7 @@ export function GetChampionImg(championId) {
     }
   
     if(champName!=''){
-      return <img src={`http://localhost:5173/src/data/13.21.1/img/champion/${champName}.png`} width={32} height={32}/>;
+      return <img src={`${window.location.origin}/src/data/13.21.1/img/champion/${champName}.png`} width={32} height={32}/>;
     }
     return '';
   

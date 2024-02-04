@@ -19,7 +19,7 @@ export function SummonersList({ matchParticipants , region}) {
                         <div className={`summ${participant.teamId}${participant.teamPosition}`}>
                             {participant.teamId === 100 ? (
                                 <>
-                                    <a className="teamId100" href={"http://localhost:5173/profile/"+region+"/" + participant.summonerName} target="_blank" rel="noopener noreferrer">
+                                    <a className="teamId100" href={`${window.location.origin}/profile/`+region+"/" + participant.summonerName} target="_blank" rel="noopener noreferrer">
                                         {participant.summonerName}
                                     </a>
                                     <ChampIconUrl champIconName={participant.championName} />
@@ -27,7 +27,7 @@ export function SummonersList({ matchParticipants , region}) {
                             ) : (
                                 <>
                                     <ChampIconUrl champIconName={participant.championName} />
-                                    <a className="teamId200" href={"http://localhost:5173/profile/"+region+"/" + participant.summonerName} target="_blank" rel="noopener noreferrer">
+                                    <a className="teamId200" href={`${window.location.origin}/profile/`+region+"/" + participant.summonerName} target="_blank" rel="noopener noreferrer">
                                         {participant.summonerName}
                                     </a>
                                 </>
@@ -70,7 +70,7 @@ export function SummonersListSpecial({ matchParticipants , region}) {
                             {participant.teamId === 100 ? (
                                 <>
 
-                                    <a className="teamId100" href={"http://localhost:5173/profile/"+region+"/" + participant.summonerName} target="_blank" rel="noopener noreferrer">
+                                    <a className="teamId100" href={`${window.location.origin}/profile/`+region+"/" + participant.summonerName} target="_blank" rel="noopener noreferrer">
                                         {participant.summonerName}
                                     </a>
 
@@ -80,7 +80,7 @@ export function SummonersListSpecial({ matchParticipants , region}) {
                                 <>
                                     <ChampIconUrl champIconName={participant.championName} />
 
-                                    <a className="teamId200" href={"http://localhost:5173/profile/"+region+"/" + participant.summonerName} target="_blank" rel="noopener noreferrer">
+                                    <a className="teamId200" href={`${window.location.origin}/profile/`+region+"/" + participant.summonerName} target="_blank" rel="noopener noreferrer">
                                         {participant.summonerName}
                                     </a>
                                 </>

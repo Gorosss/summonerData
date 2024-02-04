@@ -274,7 +274,7 @@ export function GameInfo({ summonerInfo, matchInfo, region }) {
 
                                     </div>
                                     <div className='summonerName'>
-                                        <a href={"http://localhost:5173/profile/"+region+"/" + participant.summonerName} target="_blank" rel="noopener noreferrer">
+                                        <a href={`${window.location.origin}/profile/`+region+"/" + participant.summonerName} target="_blank" rel="noopener noreferrer">
                                             {participant.summonerName}
                                         </a>
 
@@ -404,7 +404,7 @@ export function GameInfo({ summonerInfo, matchInfo, region }) {
 
                                     </div>
                                     <div className='summonerName'>
-                                        <a href={"http://localhost:5173/profile/"+region+"/" + participant.summonerName} target="_blank" rel="noopener noreferrer">
+                                        <a href={`${window.location.origin}/profile/`+region+"/" + participant.summonerName} target="_blank" rel="noopener noreferrer">
                                             {participant.summonerName}
                                         </a>
                                     </div>

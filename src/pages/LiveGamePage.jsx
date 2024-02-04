@@ -141,7 +141,7 @@ export function LiveGamePage() {
                    
                   </div>
                 ):(
-                <LiveGame summonerInfo={summonerInfo} liveGameInfo={summonerSpectatorInfo} />)
+                <LiveGame summonerInfo={summonerInfo} liveGameInfo={summonerSpectatorInfo} region={reg}/>)
                 
                 )}
             </div>

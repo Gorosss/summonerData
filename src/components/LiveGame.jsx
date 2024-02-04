@@ -15,6 +15,9 @@ import { summonerNameApi, getSummonerStats, TierMiniIconUrl } from '../api/apiCa
 
 import { ProgressBarWinRate } from '../components/ProgressBar.jsx';
 
+import {regionValue} from "../components/RegionValue";
+
+
 
 
 async function getSummonerRankedInfo({ reg, summonerName }) {
@@ -45,7 +48,7 @@ async function getSummonerRankedInfo({ reg, summonerName }) {
 }
 
 
-export function LiveGame({ summonerInfo, liveGameInfo }) {
+export function LiveGame({ summonerInfo, liveGameInfo , region}) {
 
 
     const [activeRunesIndexes, setActiveRunesIndexes] = useState([]);
@@ -160,7 +163,7 @@ export function LiveGame({ summonerInfo, liveGameInfo }) {
                                     </div>
                                 </div>
                                 <div className='summonerName'>
-                                    <a href={"http://localhost:5173/profile/EUW1/" + participant.summonerName} target="_blank" rel="noopener noreferrer">
+                                    <a href={`${window.location.origin}/profile/`+regionValue(region)+`/` + participant.summonerName} target="_blank" rel="noopener noreferrer">
                                         {participant.summonerName}
                                     </a>
                                 </div>
@@ -304,7 +307,7 @@ export function LiveGame({ summonerInfo, liveGameInfo }) {
                                     </div>
                                 </div>
                                 <div className='summonerName'>
-                                    <a href={"http://localhost:5173/profile/EUW1/" + participant.summonerName} target="_blank" rel="noopener noreferrer">
+                                    <a href={`${window.location.origin}/profile/`+regionValue(region)+`/` + participant.summonerName} target="_blank" rel="noopener noreferrer">
                                         {participant.summonerName}
                                     </a>
                                 </div>

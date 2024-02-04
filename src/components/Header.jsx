@@ -52,7 +52,7 @@ export function Header() {
 
     const handleHome = () => {
 
-        window.location.href = 'http://localhost:5173';
+        window.location.href = `${window.location.origin}`;
       };
 
 

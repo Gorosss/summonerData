@@ -2,7 +2,7 @@ import React from "react";
 
 import { ChampIconUrl } from '../api/apiCalls.jsx'
 
-import { Top, Jungle, Mid, Bot, Sup } from '../assets/svgs.jsx'
+import { Top, Jungle, Mid, Bot, Sup } from '../../public/assets/svgs.jsx'
 
 
 

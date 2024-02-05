@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Github, LinkedIn } from '../assets/svgs.jsx'
+import { Github, LinkedIn } from '../../public/assets/svgs.jsx'
 
 
 import '../css/Footer.css'

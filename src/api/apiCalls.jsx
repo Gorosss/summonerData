@@ -126,7 +126,7 @@ export const getSummonerChamMasteryPoints = async ({ reg, summonerId }) => {
 
 export function TierIconUrl({ tier }) {
 
-    const tierIconUrl = `${window.location.origin}/public/img/summonerTier/${tier}.png`;
+    const tierIconUrl = `${window.location.origin}/public/assests/img/summonerTier/${tier}.png`;
     return (
         <img src={tierIconUrl} alt="Tier Icon" height={80} width={80} />
     )
@@ -135,7 +135,7 @@ export function TierIconUrl({ tier }) {
 
 export function TierMiniIconUrl({ tier }) {
 
-    const tierIconUrl = `${window.location.origin}/public/img/miniTierIcons/${tier}.png`;
+    const tierIconUrl = `${window.location.origin}/public/assests/img/miniTierIcons/${tier}.png`;
     return (
         <img src={tierIconUrl} alt="Tier Icon" height={16} width={16} />
     )
@@ -208,7 +208,7 @@ export function SummonerSpellIconUrl({ summonerSpeelIconId }) {
 
 
 
-    const champIconUrl = `${window.location.origin}/public/img/summonerSpell/${summonerSpeelIconId}.png`;
+    const champIconUrl = `${window.location.origin}/public/assests/img/summonerSpell/${summonerSpeelIconId}.png`;
     return (
         <div>
             <img src={champIconUrl} alt="Champ Icon" height={20} width={20} />
@@ -222,7 +222,7 @@ export function RuneIconUrl({ runeIconId }) {
 
 
 
-    const champIconUrl = `${window.location.origin}/public/img/rune/${runeIconId}.png`;
+    const champIconUrl = `${window.location.origin}/public/assests/img/rune/${runeIconId}.png`;
     return (
         <>
             <img src={champIconUrl} alt="Champ Icon" height={20} width={20} />

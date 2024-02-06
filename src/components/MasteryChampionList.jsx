@@ -100,7 +100,7 @@ function getChampionImg(championId) {
   }
 
   if(champName!=''){
-    return <img src={`${window.location.origin}/src/data/13.21.1/img/champion/${champName}.png`} width={32} height={32}/>;
+    return <img src={`/assets/data/13.21.1/img/champion/${champName}.png`} width={32} height={32}/>;
   }
   return '';
 
@@ -108,9 +108,9 @@ function getChampionImg(championId) {
 
 function getChestImg(chestGranted) {
   if(chestGranted){
-    return <img src={`${window.location.origin}/src/data/13.21.1/img/chest/chest.png`}  width={32} height={32}/>;
+    return <img src={`/assets/data/13.21.1/img/chest/chest.png`}  width={32} height={32}/>;
   }
-  return <img className='notEarned' src={`${window.location.origin}/src/data/13.21.1/img/chest/chest.png`}  width={32} height={32}/>;
+  return <img className='notEarned' src={`/assets/data/13.21.1/img/chest/chest.png`}  width={32} height={32}/>;
 }
 
 function getPointsUntilNextLvl(masteredLvl,pointsUntilNextLvl) {
@@ -139,15 +139,15 @@ function getMasteryTokens(tokens,mastery){
   var buffer = [];
   if (mastery == 6) { 
     for (let index = 0; index < tokens; index++) {
-      buffer.push(<img src={`${window.location.origin}/src/data/13.21.1/img/masteryicon/m7.png`}  width={32} height={32} onMouseOver="asdfasf"/>); 
+      buffer.push(<img src={`/assets/data/13.21.1/img/masteryicon/m7.png`}  width={32} height={32} onMouseOver="asdfasf"/>); 
     }    
   }else{
     for (let index = 0; index < tokens; index++) {
-      buffer.push(<img src={`${window.location.origin}/src/data/13.21.1/img/masteryicon/m6.png`}  width={32} height={32}/>); 
+      buffer.push(<img src={`/assets/data/13.21.1/img/masteryicon/m6.png`}  width={32} height={32}/>); 
     }  
   }
   for (let index = 0; index < 3-tokens; index++) {
-    buffer.push(<img className='notEarned' src={`${window.location.origin}/src/data/13.21.1/img/masteryicon/m6.png`}  width={32} height={32}/>); 
+    buffer.push(<img className='notEarned' src={`/assets/data/13.21.1/img/masteryicon/m6.png`}  width={32} height={32}/>); 
   }      
   return (<div>
     {buffer}

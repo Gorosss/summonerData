@@ -1,5 +1,5 @@
 
-import champData from "/assets/data/13.21.1/data/en_US/champion.json";
+import champData from "/public/assets/data/13.21.1/data/en_US/champion.json";
 
 
 let champList = champData.data;

@@ -1,5 +1,5 @@
 import React from 'react';
-import champData from "../data/13.21.1/data/en_US/champion.json";
+import champData from "/assets/data/13.21.1/data/en_US/champion.json";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/MasteryChampionList.css'
 import DataTable from 'react-data-table-component';

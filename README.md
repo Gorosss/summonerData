@@ -10,7 +10,7 @@ Key Features:
 
 Match History: SummonerData.gg provides users with access to a detailed history of their recent matches. Players can review statistics such as wins, losses, scores, items built, and other important details for each match.
 
-![Profile](/assets/profileREADME.png)
+![Profile](/public/assets/profileREADME.png)
 
 Champion Mastery Information: The application offers a comprehensive analysis of players' mastery with each champion. Users can learn about their mastery levels, points, and overall performance with each character.
 

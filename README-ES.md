@@ -10,12 +10,18 @@ Características Principales:
 
 Historial de Partidas: SummonerData.gg brinda a los usuarios acceso a un historial detallado de sus partidas recientes. Los jugadores pueden revisar estadísticas de victorias, derrotas, puntuaciones, objetos construidos y otros detalles importantes de cada partida.
 
-![Profile](/assets/profileREADME.png)
+<div align="center">
+  <img src="/public/assets/profileREADME.png" alt="Profile" width="50%">
+</div>
 
 Información de Maestrías con Campeones: La aplicación ofrece un análisis exhaustivo de las maestrías de los jugadores con cada campeón. Los usuarios pueden conocer sus niveles de maestría, puntos y desempeño general con cada personaje.
 
-![Profile](/assets/masteryREADME.png)
+<div align="center">
+  <img src="/public/assets/masteryREADME.png" alt="Profile" width="50%">
+</div>
 
 Seguimiento en Tiempo Real: Para aquellos que desean seguir su progreso en tiempo real, SummonerData.gg proporciona información en vivo sobre la partida actual. Los usuarios pueden obtener detalles instantáneos sobre el campeón que están jugando, el estado de la partida, estadísticas clave y otros datos relevantes.
 
-![Profile](/assets/liveGameREADME.png)
+<div align="center">
+  <img src="/public/assets/liveGameREADME.png" alt="Profile" width="50%">
+</div>

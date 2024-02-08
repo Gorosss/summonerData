@@ -7,7 +7,7 @@
 SummonerData.gg is an application designed to provide League of Legends players with valuable and real-time information, allowing them easy access to key data related to their match history, champion masteries, and live statistics.
 
 <div align="center">
-  <img src="/public/assets/summonerDataImage.webp" alt="Profile" width="50%">
+  <img src="/public/assets/summonerDataImage.webp" alt="Profile" width="50%" style="margin-bottom: 20px;">
 </div>
 
 Key Features:

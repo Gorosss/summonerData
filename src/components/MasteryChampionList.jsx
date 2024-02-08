@@ -139,15 +139,15 @@ function getMasteryTokens(tokens,mastery){
   var buffer = [];
   if (mastery == 6) { 
     for (let index = 0; index < tokens; index++) {
-      buffer.push(<img src={`/assets/data/13.21.1/img/masteryicon/m7.png`}  width={32} height={32} onMouseOver="asdfasf"/>); 
+      buffer.push(<img src={`/assets/img/masteryicon/m7.png`}  width={32} height={32} onMouseOver="asdfasf"/>); 
     }    
   }else{
     for (let index = 0; index < tokens; index++) {
-      buffer.push(<img src={`/assets/data/13.21.1/img/masteryicon/m6.png`}  width={32} height={32}/>); 
+      buffer.push(<img src={`/assets/img/masteryicon/m6.png`}  width={32} height={32}/>); 
     }  
   }
   for (let index = 0; index < 3-tokens; index++) {
-    buffer.push(<img className='notEarned' src={`/assets/data/13.21.1/img/masteryicon/m6.png`}  width={32} height={32}/>); 
+    buffer.push(<img className='notEarned' src={`/assets/img/masteryicon/m6.png`}  width={32} height={32}/>); 
   }      
   return (<div>
     {buffer}

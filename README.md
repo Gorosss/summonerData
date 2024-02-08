@@ -17,7 +17,7 @@ Match History: SummonerData.gg provides users with access to a detailed history 
 Champion Mastery Information: The application offers a comprehensive analysis of players' mastery with each champion. Users can learn about their mastery levels, points, and overall performance with each character.
 
 <div align="center">
-  <img src="/public/assets/masteryREADME" alt="Profile" width="50%">
+  <img src="/public/assets/masteryREADME.png" alt="Profile" width="50%">
 </div>
 
 

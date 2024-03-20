@@ -35,7 +35,8 @@ export function ProfilePage() {
 
   const getSummonerInfo = async () => {
     try {
-      const sumApiInfo = await summonerNameApi({ reg, summonerName }); // Make sure to call your API function
+      const sumApiInfo = await summonerNameApi({ reg, summonerName }); // Get the summoner info from the API
+      console.log(summonerName, reg, sumApiInfo)
       setSummoner(sumApiInfo);
       // const summonerPuuid = summonerInfo.puuid
       

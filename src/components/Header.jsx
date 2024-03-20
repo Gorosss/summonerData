@@ -36,6 +36,7 @@ export function Header() {
 
         
         navigate(url);
+        window.location.reload()
       };
 
 
